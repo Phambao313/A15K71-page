@@ -52,6 +52,20 @@ nav a {
     max-width: 800px;
 }
 
+/* Thiết lập cho màn hình điện thoại (chiều rộng dưới 600px) */
+@media screen and (max-width: 600px) {
+    .overlay-box {
+        width: 75% !important; /* Giảm chiều rộng ảnh xuống còn 75% màn hình */
+        max-width: 300px;      /* Giới hạn độ rộng tối đa trên điện thoại */
+        border-width: 3px;     /* Làm viền mỏng lại cho thanh thoát */
+    }
+
+    .hero-section {
+        gap: 15px;             /* Thu hẹp khoảng cách giữa các ảnh trên điện thoại */
+        padding: 20px 10px;    /* Giảm padding để tiết kiệm không gian */
+    }
+}
+
 /* 4. Định dạng từng khung ảnh */
 .overlay-box {
     animation: fadeInUp 1s ease-out;
@@ -86,6 +100,7 @@ nav a {
     line-height: 1.8;
     padding-bottom: 500px; /* Tạo một khoảng trống lớn ở dưới cùng để cuộn cho đã */
 }
+
 
 
 
