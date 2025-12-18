@@ -29,17 +29,41 @@ body {
 }
 /* 2. Thanh Menu xanh dương */
 nav {
-    width: 100%;
-    background-color: #5599ff;
+    position: sticky;           /* Giữ menu ở trên cùng khi cuộn */
+    top: 0;
+    z-index: 1000;
+    background: rgba(24, 119, 242, 0.9); /* Màu xanh nhưng có độ trong suốt */
+    backdrop-filter: blur(10px);        /* Hiệu ứng kính mờ xuyên thấu */
     padding: 15px 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 30px;                          /* Khoảng cách giữa các mục */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 nav a {
-    margin: 0 15px;
     text-decoration: none;
-    color: black;
-    font-weight: bold;
+    color: white !important;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 20px;       /* Bo tròn các nút mục */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt */
+    text-transform: uppercase; /* Chữ in hoa cho chuyên nghiệp */
+    letter-spacing: 1px;       /* Giãn chữ ra một chút */
+}
+/* Hiệu ứng khi di chuột vào từng mục */
+nav a:hover {
+    background: white;        /* Đổi nền thành trắng */
+    color: #1877F2 !important; /* Chữ chuyển về màu xanh */
+    transform: translateY(-3px); /* Nút hơi nảy lên */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Đánh dấu trang đang xem */
+nav a.active {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
 }
 
 @keyframes fadeInUp {
@@ -196,6 +220,7 @@ area {
 .sodo-container img:hover {
     transform: scale(1.02); /* Phóng to nhẹ cả sơ đồ khi xem */
 }
+
 
 
 
