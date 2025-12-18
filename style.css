@@ -43,10 +43,10 @@ nav a {
     border: 5px solid white;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     position: relative !important; /* Đảm bảo không bị bay lung tung */
-    
-    /* HIỆU ỨNG QUAN TRỌNG: Giúp ảnh phóng to mượt mà trong 0.3 giây */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi chỉ vào ảnh */
+    border-radius: 15px;      /* Bo tròn các góc ảnh cho mềm mại */
+    overflow: hidden;         /* Đảm bảo ảnh bên trong cũng bị bo góc theo */
 }
 
 /* 5. LỆNH BẠN THÍCH: Hiệu ứng phóng to khi di chuột vào */
@@ -68,3 +68,4 @@ nav a {
     padding: 50px 20px;
     line-height: 1.8;
 }
+
