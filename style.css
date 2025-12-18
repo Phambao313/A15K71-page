@@ -83,10 +83,10 @@ nav a {
 /* 6. Thông tin trường học bên dưới */
 .footer-info {
     text-align: center;
-    padding: 50px 20px;
     line-height: 1.8;
     padding-bottom: 500px; /* Tạo một khoảng trống lớn ở dưới cùng để cuộn cho đã */
 }
+
 
 
 
