@@ -108,6 +108,46 @@ nav a {
     color: #333;             /* Màu chữ (xám đậm) */
     background-color: #fff;  /* Nền trắng cho phần chữ để khớp với viền ảnh */
 }
+.fb-fixed-button {
+    position: fixed;        /* Giữ cố định trên màn hình */
+    bottom: 20px;           /* Cách đáy 20px */
+    right: 20px;            /* Cách lề phải 20px */
+    background-color: #1877F2; /* Màu xanh đặc trưng của Facebook */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;    /* Bo tròn nút */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;          /* Luôn nằm trên cùng các thành phần khác */
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.fb-fixed-button img {
+    width: 25px;            /* Kích thước icon Facebook */
+    height: 25px;
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+.fb-fixed-button:hover {
+    transform: scale(1.1);  /* Phóng to nút một chút */
+    background-color: #166fe5;
+}
+
+/* Ẩn chữ trên điện thoại để nút gọn hơn (chỉ hiện icon) */
+@media screen and (max-width: 600px) {
+    .fb-fixed-button span {
+        display: none;
+    }
+    .fb-fixed-button {
+        padding: 10px;
+        border-radius: 50%; /* Biến thành nút tròn trên điện thoại */
+    }
+}
 
 
 
