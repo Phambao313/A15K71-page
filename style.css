@@ -55,7 +55,7 @@ nav a {
 /* Thiết lập cho màn hình điện thoại (chiều rộng dưới 600px) */
 @media screen and (max-width: 600px) {
     .overlay-box {
-        width: 50% !important; /* Giảm chiều rộng ảnh xuống còn 75% màn hình */
+        width: 60% !important; /* Giảm chiều rộng ảnh xuống còn 75% màn hình */
         max-width: 300px;      /* Giới hạn độ rộng tối đa trên điện thoại */
         border-width: 3px;     /* Làm viền mỏng lại cho thanh thoát */
     }
@@ -100,6 +100,7 @@ nav a {
     line-height: 1.8;
     padding-bottom: 500px; /* Tạo một khoảng trống lớn ở dưới cùng để cuộn cho đã */
 }
+
 
 
 
