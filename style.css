@@ -1,7 +1,10 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: Roboto, sans-serif;
+    background-image: url('https://github.com/Phambao313/A15K71-page/blob/main/537179528_1159372719558435_4548563004784225889_n.jpg?raw=true');
+    background-size: cover;
+    background-attachment: fixed;
     background-color: #f0f0f0;
 }
 
@@ -80,4 +83,5 @@ nav a {
     text-align: center;
     padding: 20px;
     color: #333;
+
 }
