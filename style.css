@@ -24,22 +24,23 @@ nav a {
 
 /* 1. Khung bao quanh toàn bộ các ảnh */
 .hero-section {
-    display: flex;             /* Kích hoạt Flexbox */
-    flex-direction: column;    /* Xếp các thành phần theo chiều dọc (cột) */
-    align-items: center;       /* Căn giữa tất cả các ảnh theo chiều ngang */
-    gap: 40px;                 /* Tạo khoảng cách đều 40px giữa các tấm ảnh */
-    padding: 50px 0;           /* Tạo khoảng trống trên và dưới cho thoáng */
+  display: flex;
+    flex-direction: column; /* Xếp hàng dọc */
+    align-items: center;    /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    gap: 30px;              /* Khoảng cách giữa các ảnh */
     width: 100%;
-    background-color: #f9f9f9; /* Màu nền nhẹ để nổi bật ảnh */
+    padding: 40px 0;
+    margin: 0 auto;         /* Đảm bảo khung này nằm giữa trang */
 }
 
 /* 2. Định dạng cho từng khung ảnh lớp */
 .overlay-box {
-    width: 50%;                /* Chiều rộng chiếm 90% màn hình điện thoại */
-    max-width: 700px;          /* Nhưng không rộng quá 700px trên máy tính */
-    border: 5px solid white;   /* Viền trắng cho giống ảnh thật */
+    width: 60%;             /* Độ rộng ảnh trên điện thoại */
+    max-width: 600px;       /* Độ rộng tối đa trên máy tính */
+    border: 5px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     background-color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Đổ bóng cho ảnh có chiều sâu */
     transition: transform 0.3s; /* Hiệu ứng mượt mà khi di chuột vào */
 }
 
@@ -49,7 +50,8 @@ nav a {
 }
 
 .overlay-box img {
-    width: 100%;               /* Ảnh luôn vừa vặn trong khung */
+    width: 100%;            /* Ảnh tự dãn đầy khung trắng */
+    height: auto;
     display: block;
 }
 
@@ -68,4 +70,5 @@ nav a {
     color: #333;
 
 }
+
 
