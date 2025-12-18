@@ -9,7 +9,7 @@ body {
     background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
                       url('https://raw.githubusercontent.com/Phambao313/A15K71-page/refs/heads/main/537179528_1159372719558435_4548563004784225889_n.jpg');
     background-size: cover;
-    background-attachment: fixed; /* Giữ nền đứng yên khi cuộn trang */
+    background-attachment: scroll; /* Giữ nền đứng yên khi cuộn trang */
     background-position: center;
     background-repeat: no-repeat;
     font-family: Roboto, sans-serif;
@@ -54,6 +54,7 @@ nav a {
 
 /* 4. Định dạng từng khung ảnh */
 .overlay-box {
+    animation: fadeInUp 1s ease-out;
     width: 100%;
     max-width: 550px; /* Kích thước ảnh vừa đẹp trên máy tính */
     background-color: white;
@@ -64,7 +65,6 @@ nav a {
     cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi chỉ vào ảnh */
     border-radius: 15px;      /* Bo tròn các góc ảnh cho mềm mại */
     overflow: hidden;         /* Đảm bảo ảnh bên trong cũng bị bo góc theo */
-    animation: fadeInUp 1s ease-out;
 }
 
 /* 5. LỆNH BẠN THÍCH: Hiệu ứng phóng to khi di chuột vào */
@@ -86,6 +86,7 @@ nav a {
     padding: 50px 20px;
     line-height: 1.8;
 }
+
 
 
 
