@@ -183,6 +183,19 @@ nav a {
 }
 
 
+/* trang thành viên lớp */
+area {
+    cursor: pointer; /* Hiện bàn tay khi chỉ vào mặt các bạn */
+}
+
+.sodo-container img {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.sodo-container img:hover {
+    transform: scale(1.02); /* Phóng to nhẹ cả sơ đồ khi xem */
+}
 
 
 
