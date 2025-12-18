@@ -100,6 +100,14 @@ nav a {
     line-height: 1.8;
     padding-bottom: 500px; /* Tạo một khoảng trống lớn ở dưới cùng để cuộn cho đã */
 }
+.image-title {
+    text-align: center;      /* Căn giữa chữ */
+    padding: 10px;           /* Tạo khoảng cách xung quanh chữ */
+    font-size: 18px;         /* Độ lớn của chữ */
+    font-weight: bold;       /* Làm chữ đậm lên */
+    color: #333;             /* Màu chữ (xám đậm) */
+    background-color: #fff;  /* Nền trắng cho phần chữ để khớp với viền ảnh */
+}
 
 
 
