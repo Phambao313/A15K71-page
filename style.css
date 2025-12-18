@@ -9,7 +9,7 @@ body {
     background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
                       url('https://raw.githubusercontent.com/Phambao313/A15K71-page/refs/heads/main/537179528_1159372719558435_4548563004784225889_n.jpg');
     background-size: cover;
-    background-attachment: scroll; /* Giữ nền đứng yên khi cuộn trang */
+    background-attachment: scroll ; /* Giữ nền đứng yên khi cuộn trang */
     background-position: center;
     background-repeat: no-repeat;
     font-family: Roboto, sans-serif;
@@ -85,7 +85,9 @@ nav a {
     text-align: center;
     padding: 50px 20px;
     line-height: 1.8;
+    padding-bottom: 500px; /* Tạo một khoảng trống lớn ở dưới cùng để cuộn cho đã */
 }
+
 
 
 
