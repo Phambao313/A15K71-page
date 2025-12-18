@@ -5,13 +5,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center !important; /* Luôn giữ mọi thứ ở giữa */
+    min-height: 100vh;
     background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
                       url('537179528_1159372719558435_4548563004784225889_n.jpg');
     background-size: cover;
     background-attachment: fixed; /* Giữ nền đứng yên khi cuộn trang */
     background-position: center;
     background-repeat: no-repeat;
-    font-family: Boroto: sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 /* 2. Thanh Menu xanh dương */
@@ -73,6 +74,7 @@ nav a {
     padding: 50px 20px;
     line-height: 1.8;
 }
+
 
 
 
