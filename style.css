@@ -5,7 +5,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center !important; /* Luôn giữ mọi thứ ở giữa */
-    background-color: #f0f0f0;
+    background-image: linear-gradient(rgba(255, 255, 200, 0.6), rgba(255, 255, 200, 0.6)), 
+                      scr="537179528_1159372719558435_4548563004784225889_n.jpg";
     font-family: Boroto: sans-serif;
 }
 
@@ -68,4 +69,5 @@ nav a {
     padding: 50px 20px;
     line-height: 1.8;
 }
+
 
