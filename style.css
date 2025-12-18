@@ -5,8 +5,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center !important; /* Luôn giữ mọi thứ ở giữa */
-    background-image: linear-gradient(rgba(255, 255, 200, 0.6), rgba(255, 255, 200, 0.6)), 
-                      url('https://github.com/Phambao313/A15K71-page/main/537179528_1159372719558435_4548563004784225889_n.jpg');
+    background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
+                      url('537179528_1159372719558435_4045656966744315448_n.jpg');
     font-family: Boroto: sans-serif;
 }
 
@@ -69,6 +69,7 @@ nav a {
     padding: 50px 20px;
     line-height: 1.8;
 }
+
 
 
 
