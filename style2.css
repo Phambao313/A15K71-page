@@ -64,8 +64,8 @@ img {
 }
 @media screen and (max-width: 788px) {
 	.box {
-		width: 700px;
-		height: 495px;
+		width: 700px !important;
+		height: 495px !important;
 		border-width: 3px;
 	}
 	 .hero-section {
@@ -81,6 +81,7 @@ img {
 		justify-content: space-around;
 		align-items: center;
 		display: flex;
+		padding: 15px 0;
 	}
 	.menu a {
 		font-size: 20px;
