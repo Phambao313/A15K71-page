@@ -29,7 +29,7 @@ body {
 }
 /* 2. Thanh Menu xanh dương */
 nav {
-    position: sticky;           /* Giữ menu ở trên cùng khi cuộn */
+    position: static;          /* Giữ menu ở trên cùng khi cuộn */
     top: 0;
     z-index: 1000;
     background: rgba(24, 119, 242, 0.9); /* Màu xanh nhưng có độ trong suốt */
@@ -220,6 +220,7 @@ area {
 .sodo-container img:hover {
     transform: scale(1.02); /* Phóng to nhẹ cả sơ đồ khi xem */
 }
+
 
 
 
