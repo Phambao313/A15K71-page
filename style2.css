@@ -72,7 +72,7 @@ img {
         gap: 15px;             /* Thu hẹp khoảng cách giữa các ảnh trên điện thoại */
         padding: 20px 10px;    /* Giảm padding để tiết kiệm không gian */
     }
-	.menu {
+	.menumb {
 		flex-direction: row;
 		position: absolute;
 		left: 50px;
@@ -82,7 +82,7 @@ img {
 		align-items: center;
 		display: flex;
 	}
-	.menu a {
+	.menumb a {
 		font-size: 20px;
 		padding: 5px 10px;
 	}
