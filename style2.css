@@ -75,7 +75,15 @@ img {
 	.menu {
 		flex-direction: row;
 		position: absolute;
-		left: 50px
+		left: 50px;
 		width: 100%;
+		border-radius: 0;
+		justify-content: space-around;
+		align-items: center;
+		display: flex;
+	}
+	.menu a {
+		font-size: 20px;
+		padding: 5px 10px;
 	}
 }
