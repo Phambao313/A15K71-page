@@ -95,4 +95,13 @@ img {
 	}
 	.menu a:hover {
 		border: 1px solid white;
+		
 }
+.image-title {
+    text-align: center;      /* Căn giữa chữ */
+    padding: 10px;           /* Tạo khoảng cách xung quanh chữ */
+    font-size: 18px;         /* Độ lớn của chữ */
+    font-weight: bold;       /* Làm chữ đậm lên */
+    color: #333;             /* Màu chữ (xám đậm) */
+    background-color: #99CCFF;  /* Nền xanh cho phần chữ để khớp với viền ảnh */
+}	
