@@ -13,6 +13,18 @@
         }
 
         /* Thanh điều hướng giống các trang trước */
+nav {
+    position: static;          /* Giữ menu ở trên cùng khi cuộn */
+    top: 0;
+    z-index: 1000;
+    background: rgba(24, 119, 242, 0.9); /* Màu xanh nhưng có độ trong suốt */
+    backdrop-filter: blur(10px);        /* Hiệu ứng kính mờ xuyên thấu */
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;                          /* Khoảng cách giữa các mục */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 nav a {
     text-decoration: none;
     color: white !important;
