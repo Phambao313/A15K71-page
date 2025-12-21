@@ -49,113 +49,98 @@ nav a.active {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid white;
 }
+/* Bối cảnh hành trình */
+.map-wrapper {
+    position: relative;
+    padding: 180px 0;
+    width: 100%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
 
-        /* Tiêu đề trang */
-        .header-title {
-            text-align: center;
-            padding: 60px 20px;
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            color: #333;
-        }
+/* Đường kẻ quanh co SVG */
+.svg-path {
+    position: absolute;
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; 
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
 
-        /* Container chứa bản đồ kỷ niệm */
-        .timeline-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            padding: 50px 20px;
-        }
+/* Từng trạm dừng (Station) to lớn */
+.station {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1300px;
+    margin-bottom: 500px; /* Khoảng cách lướt cực lớn */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 
-        /* Đường kẻ dọc nối các mốc */
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 100px;
-            bottom: 100px;
-            width: 4px;
-            border-left: 4px dashed var(--path-color);
-            transform: translateX(-50%);
-            z-index: 1;
-        }
+.station:nth-child(even) { 
+    flex-direction: row-reverse; 
+}
 
-        .milestone {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 120px;
-            position: relative;
-            z-index: 2;
-        }
+/* Hiệu ứng khung ảnh khổng lồ */
+.photo-frame {
+    width: 65%;
+}
 
-        /* Đảo ngược vị trí cho các mục chẵn */
-        .milestone:nth-child(even) {
-            flex-direction: row-reverse;
-        }
+.photo-frame img {
+    width: 100%;
+    border: 18px solid white; /* Viền trắng dày như ảnh thật */
+    border-radius: 5px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+}
 
-        .memory-image {
-            width: 45%;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
-        }
+/* Bảng kỷ niệm viết tay */
+.note-card {
+    width: 30%;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 5px;
+    box-shadow: 12px 12px 0px var(--path-color);
+    border: 1px solid #ddd;
+    transform: rotate(-3deg);
+}
 
-        .memory-image img {
-            width: 100%;
-            border-radius: 15px;
-            border: 8px solid white;
-            transition: transform 0.3s;
-        }
+.note-card h3 { 
+    margin-top: 0; 
+    color: var(--fb-blue); 
+    font-size: 28px; 
+}
 
-        .memory-box {
-            width: 45%;
-            background: var(--paper-color);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 5px 5px 20px rgba(0,0,0,0.1);
-            border: 1px solid #e0d0b0;
-            position: relative;
-        }
+.note-card p {
+    font-family: 'Itim', cursive;
+    font-size: 19px; /* Chữ trong bảng nhỏ gọn */
+    line-height: 1.7;
+    color: #444;
+}
 
-        .memory-box::after {
-            content: '📌'; /* Ghim giấy cho đẹp */
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 20px;
-        }
+/* Tiêu đề trang */
+.big-title {
+    font-size: 5.5rem;
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    margin-bottom: 150px;
+    color: #333;
+    text-shadow: 3px 3px 0px #fff;
+}
 
-        .handwriting {
-            font-family: 'Itim', cursive;
-            font-size: 1.2rem;
-            color: #444;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* Điểm dừng cuối cùng */
-        .final-stop {
-            text-align: center;
-            margin-top: 50px;
-            padding-bottom: 100px;
-        }
-
-        .final-stop img {
-            width: 80%;
-            max-width: 600px;
-            border: 10px solid white;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        /* Responsive cho điện thoại */
-        @media (max-width: 768px) {
-            .timeline-container::before { left: 20px; }
-            .milestone, .milestone:nth-child(even) {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 50px;
-            }
-            .memory-image, .memory-box { width: 100%; margin-bottom: 20px; }
-        }
+/* Responsive cho di động */
+@media (max-width: 992px) {
+    .station, .station:nth-child(even) { 
+        flex-direction: column; 
+    }
+    .photo-frame { width: 100%; }
+    .note-card { 
+        width: 90%; 
+        margin-top: 30px;
+        transform: rotate(0);
+    }
