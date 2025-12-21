@@ -212,12 +212,14 @@ area {
     cursor: pointer; /* Hiện bàn tay khi chỉ vào mặt các bạn */
 }
 
-.sodo-container img {
+.img-frame {
+	border: 20px solid #99CCFF;
+	border-radius: 10px;
+	box-shadow: 0 5px 12px #99CCFF;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transition: transform 0.3s;
 }
-
-.sodo-container img:hover {
+.img-frame img:hover {    
     transform: scale(1.02); /* Phóng to nhẹ cả sơ đồ khi xem */
 }
 
