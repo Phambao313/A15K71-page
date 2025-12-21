@@ -18,6 +18,7 @@ body {
 nav {
     position: fixed;          /* Giữ menu ở trên cùng khi cuộn */
     top: 0;
+	width: 100%;
     z-index: 1000;
     background: rgba(24, 119, 242, 0.9); /* Màu xanh nhưng có độ trong suốt */
     backdrop-filter: blur(10px);        /* Hiệu ứng kính mờ xuyên thấu */
@@ -212,6 +213,7 @@ area {
 	font-family: 'Inter', 'Montserrat',monospace;
 }
 	
+
 
 
 
