@@ -3,70 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hành Trình Kỷ Niệm - A15 K71</title>
+    <title> Kho báu hồi ức - A15</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Itim&family=Lexend:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Itim&family=Lexend:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="style2.css"> 
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
 
     <nav>
         <a href="index.html">🏠 Trang chủ</a>
         <a href="thanhvienlop.html">Thành viên</a>
-        <a href="kiniem.html">Kỉ niệm</a>
+        <a href="kiniem.html" class="active-nav">Kỉ niệm</a>
     </nav>
 
-    <h1 class="header-title" data-aos="zoom-in">Hành trình A15 K71</h1>
+    <div class="map-wrapper">
+        <svg class="svg-path" viewBox="0 0 500 2500" preserveAspectRatio="none">
+            <path d="M250,0 Q450,200 250,400 T250,800 T250,1200 T250,1600 T250,2000" 
+                  fill="none" stroke="#d4a373" stroke-width="6" stroke-dasharray="20" />
+        </svg>
 
-    <div class="timeline-container">
-        
-        <div class="milestone" data-aos="fade-right">
-            <div class="memory-image">
-                <img src="anh1.jpg" alt="Ngày khai giảng">
+        <h1 class="big-title" data-aos="zoom-in">Kho Báu Kỷ Niệm A15</h1>
+
+        <div class="station">
+            <div class="photo-frame" data-aos="zoom-in" data-aos-duration="1500">
+                <img src="anh1.jpg" alt="Kỷ niệm 1">
             </div>
-            <div class="memory-box">
-                <p class="handwriting">Hồi đó đứa nào cũng ngơ ngác, lần đầu tiên đứng dưới sân trường Phan Bội Châu. Mới đó mà đã 3 năm rồi...</p>
+            <div class="note-card" data-aos="fade-left">
+                <h3>Trạm Xuất Phát</h3>
+                <p>Nơi mọi thứ bắt đầu. Những nụ cười ngây ngô ngày đầu nhận lớp tại ngôi trường Phan Bội Châu thân yêu.</p>
             </div>
         </div>
 
-        <div class="milestone" data-aos="fade-left">
-            <div class="memory-image">
-                <img src="anh2.jpg" alt="Hội trại">
+        <div class="station">
+            <div class="photo-frame" data-aos="zoom-in" data-aos-duration="1500">
+                <img src="anh2.jpg" alt="Kỷ niệm 2">
             </div>
-            <div class="memory-box">
-                <p class="handwriting">Cái đêm hội trại cháy hết mình, dù mệt nhưng không ai muốn đi ngủ. Nhớ nhất là món nướng tự tay cả lớp làm.</p>
-            </div>
-        </div>
-
-        <div class="milestone" data-aos="fade-right">
-            <div class="memory-image">
-                <img src="anh3.jpg" alt="Giờ học">
-            </div>
-            <div class="memory-box">
-                <p class="handwriting">Những tiết học toán căng thẳng hay những buổi học văn mơ mộng. Cảm ơn vì chúng ta đã là một phần thanh xuân của nhau.</p>
+            <div class="note-card" data-aos="fade-right">
+                <h3>Thử Thách Đầu Tiên</h3>
+                <p>Kỳ thi học kỳ căng thẳng, nhưng sau đó là những buổi trà sữa cùng nhau quên hết mệt mỏi.</p>
             </div>
         </div>
 
-        <div class="final-stop" data-aos="zoom-in-up">
-            <h2 class="header-title" style="font-size: 2rem;">Vạch đích: Mãi là anh em!</h2>
-            <img src="anh-tap-the.jpg" alt="Ảnh tập thể lớp">
+        <div class="station">
+            <div class="photo-frame" data-aos="zoom-in" data-aos-duration="1500">
+                <img src="anh3.jpg" alt="Kỷ niệm 3">
+            </div>
+            <div class="note-card" data-aos="fade-left">
+                <h3>Về Đích Rực Rỡ</h3>
+                <p>Những giọt nước mắt và nụ cười ngày chia tay. Mãi mãi là một gia đình!</p>
+            </div>
         </div>
-
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1200, /* Tốc độ trượt (1.2 giây) */
-            once: false,    /* Cho phép hiệu ứng lặp lại khi lướt ngược lên */
-            mirror: true,   /* Tự động ẩn khi lướt qua để hiện lại khi quay lại */
-            offset: 200     /* Khoảng cách kích hoạt hiệu ứng */
+            offset: 350,  
+            duration: 1000,
+            once: false,
+            mirror: true
         });
     </script>
-
 </body>
-
 </html>
-
-
