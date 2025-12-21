@@ -75,6 +75,8 @@ img {
 	.menu {
 		flex-direction: row;
 		position: absolute;
+		top: 0;
+		z-index: 1000;
 		left: 50px;
 		width: 100%;
 		border-radius: 0;
@@ -82,9 +84,15 @@ img {
 		align-items: center;
 		display: flex;
 		padding: 15px 0;
+		background: rgba(24, 119, 242, 0.9);
 	}
 	.menu a {
 		font-size: 20px;
 		padding: 5px 10px;
+		text-decoration: none;
+		border-radius: 20px; /* Tạo độ bo tròn cho nút */
+    	transition: 0.3s;
 	}
+	.menu a:hover {
+		border: 1px solid white;
 }
