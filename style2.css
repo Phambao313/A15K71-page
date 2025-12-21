@@ -104,4 +104,5 @@ img {
     font-weight: bold;       /* Làm chữ đậm lên */
     color: #333;             /* Màu chữ (xám đậm) */
     background-color: #99CCFF;  /* Nền xanh cho phần chữ để khớp với viền ảnh */
+	display: block;
 }	
