@@ -48,7 +48,7 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 /* CHỈ KHI LÀ ĐIỆN THOẠI MỚI THU NHỎ (Media Query) */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 100%) {
     nav {
         gap: 10px;           /* Thu hẹp khoảng cách giữa các nút */
         padding: 10px 0;
@@ -211,6 +211,7 @@ area {
 	font-family: 'Inter', 'Montserrat',monospace;
 }
 	
+
 
 
 
