@@ -222,6 +222,16 @@ area {
 .img-frame img:hover {    
     transform: scale(1.02); /* Phóng to nhẹ cả sơ đồ khi xem */
 }
+.sodo-text {
+	text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #DDDDDD; 
+    background-color: #99CCFF;
+    margin: 0; /* Xóa margin để dính sát vào khung ảnh bên dưới */
+    border-radius: 10px 10px 0 0; /* Bo tròn 2 góc trên cho đẹp */
+    text-transform: uppercase;
 
 
 
