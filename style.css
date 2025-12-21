@@ -13,16 +13,15 @@ body {
     background-attachment: fixed ; /* Giữ nền đứng yên khi cuộn trang */
     background-position: center;
     background-repeat: no-repeat;
-    font-family: Roboto, sans-serif;
+    font-family: 'Lexend', sans-serif;
 }
-/* 2. Thanh Menu xanh dương */
 /* Thiết lập cho máy tính (Mặc định) */
 nav {
     position: fixed;
     top: 0;
     width: 100%;             /* Luôn trải dài 100% chiều rộng màn hình */
     left: 0;
-    z-index: 1000;
+    z-index: 9999;
     background: rgba(24, 119, 242, 0.95);
     backdrop-filter: blur(10px);
     padding: 15px 0;
@@ -212,6 +211,7 @@ area {
 	font-family: 'Inter', 'Montserrat',monospace;
 }
 	
+
 
 
 
