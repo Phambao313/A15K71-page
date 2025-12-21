@@ -15,37 +15,51 @@ body {
     font-family: Roboto, sans-serif;
 }
 /* 2. Thanh Menu xanh dương */
+/* Thiết lập cho máy tính (Mặc định) */
 nav {
-    position: fixed;          /* Giữ menu ở trên cùng khi cuộn */
+    position: fixed;
     top: 0;
+    width: 100%;             /* Luôn trải dài 100% chiều rộng màn hình */
+    left: 0;
     z-index: 1000;
-    background: rgba(24, 119, 242, 0.9); /* Màu xanh nhưng có độ trong suốt */
-    backdrop-filter: blur(10px);        /* Hiệu ứng kính mờ xuyên thấu */
+    background: rgba(24, 119, 242, 0.95);
+    backdrop-filter: blur(10px);
     padding: 15px 0;
     display: flex;
-    justify-content: center;
-    gap: 30px;                          /* Khoảng cách giữa các mục */
+    justify-content: center; /* Căn các mục menu ra giữa thanh ngang */
+    gap: 30px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+/* Các mục menu */
 nav a {
     text-decoration: none;
     color: white !important;
     font-weight: 600;
-    font-size: 16px;
-    padding: 8px 16px;
-    border-radius: 20px;       /* Bo tròn các nút mục */
-    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt */
-    text-transform: uppercase; /* Chữ in hoa cho chuyên nghiệp */
-    letter-spacing: 1px;       /* Giãn chữ ra một chút */
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: 0.3s;
+    white-space: nowrap;     /* Không cho chữ bị nhảy xuống dòng */
 }
-/* Hiệu ứng khi di chuột vào từng mục */
 nav a:hover {
     background: white;        /* Đổi nền thành trắng */
     color: #1877F2 !important; /* Chữ chuyển về màu xanh */
     transform: translateY(-3px); /* Nút hơi nảy lên */
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+/* CHỈ KHI LÀ ĐIỆN THOẠI MỚI THU NHỎ (Media Query) */
+@media screen and (max-width: 768px) {
+    nav {
+        gap: 10px;           /* Thu hẹp khoảng cách giữa các nút */
+        padding: 10px 0;
+    }
+    
+    nav a {
+        font-size: 14px;     /* Chữ nhỏ hơn một chút trên điện thoại */
+        padding: 8px 12px;
+    }
+}
+
 
 /* Đánh dấu trang đang xem */
 nav a.active {
@@ -74,21 +88,6 @@ nav a.active {
     width: 100%;
     max-width: 800px;
 }
-
-/* Thiết lập cho màn hình điện thoại (chiều rộng dưới 600px) */
-@media screen and (max-width: 600px) {
-    .overlay-box {
-        width: 60% !important; /* Giảm chiều rộng ảnh xuống còn 75% màn hình */
-        max-width: 300px;      /* Giới hạn độ rộng tối đa trên điện thoại */
-        border-width: 3px;     /* Làm viền mỏng lại cho thanh thoát */
-    }
-
-    .hero-section {
-        gap: 15px;             /* Thu hẹp khoảng cách giữa các ảnh trên điện thoại */
-        padding: 20px 10px;    /* Giảm padding để tiết kiệm không gian */
-    }
-}
-
 /* 4. Định dạng từng khung ảnh */
 .overlay-box {
     animation: fadeInUp 1s ease-out;
@@ -212,6 +211,7 @@ area {
 	font-family: 'Inter', 'Montserrat',monospace;
 }
 	
+
 
 
 
