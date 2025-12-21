@@ -74,35 +74,40 @@ img {
     }
 	.menu {
 		flex-direction: row;
-		position: absolute;
+		position: relative;
 		top: 0;
 		z-index: 1000;
-		left: 50px;
+		left: 0;
 		width: 100%;
 		border-radius: 0;
-		justify-content: space-around;
+		justify-content: space-evenly;
+		margin: 0;
 		align-items: center;
 		display: flex;
 		padding: 15px 0;
 		background: rgba(24, 119, 242, 0.9);
+		box-sizing: border-box;
 	}
 	.menu a {
-		font-size: 20px;
+		font-size: 13px;
 		padding: 5px 10px;
 		text-decoration: none;
 		border-radius: 20px; /* Tạo độ bo tròn cho nút */
     	transition: 0.3s;
+		white-space: nowrap; /* Ngăn chữ bị nhảy xuống dòng */
 	}
 	.menu a:hover {
 		border: 1px solid white;
 		
 }
 .image-title {
-    text-align: center;      /* Căn giữa chữ */
-    padding: 10px;           /* Tạo khoảng cách xung quanh chữ */
-    font-size: 18px;         /* Độ lớn của chữ */
-    font-weight: bold;       /* Làm chữ đậm lên */
-    color: #333;             /* Màu chữ (xám đậm) */
-    background-color: #99CCFF;  /* Nền xanh cho phần chữ để khớp với viền ảnh */
-	display: block;
-}	
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFCC00; /* Màu đỏ như trong ảnh bạn gửi */
+    background-color: #99CCFF;
+    margin: 0; /* Xóa margin để dính sát vào khung ảnh bên dưới */
+    border-radius: 10px 10px 0 0; /* Bo tròn 2 góc trên cho đẹp */
+    text-transform: uppercase;
+}
