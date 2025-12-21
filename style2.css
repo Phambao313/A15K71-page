@@ -125,10 +125,10 @@ nav a.active {
 
 /* Tiêu đề trang */
 .big-title {
-    font-size: 5.5rem;
+    font-size: 7rem;
     font-family: 'Dancing Script', cursive;
     text-align: center;
-    margin-bottom: 150px;
+    margin-bottom: 200px;
     color: #333;
     text-shadow: 3px 3px 0px #fff;
 }
