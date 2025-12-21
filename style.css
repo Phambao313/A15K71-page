@@ -218,11 +218,6 @@ area {
 	box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     transition: all transform 0.3s;
 }
-.img-frame img:hover {    
-    transform: scale(1.02); /* Phóng to nhẹ cả sơ đồ khi xem */
-	transform: scale(1.08);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
 .sodo-text {
 	margin: 70px 0 0 0;
 	text-align: center;
@@ -236,6 +231,7 @@ area {
 	font-family: 'Inter', 'Montserrat',monospace;
 }
 	
+
 
 
 
