@@ -74,8 +74,13 @@ img {
     text-transform: uppercase;
 }
 @media screen and (max-width: 788px) {
+	html,body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
 	.box {
-		width: 700px !important;
+		max-width: 700px;
+		width: 100% !important;
 		height: 495px !important;
 		border-width: 3px;
 	}
@@ -85,14 +90,13 @@ img {
     }
 	.menu {
 		position: relative; 
-        top: 0;
         left: 0;            /* Quan trọng: để 0 để không bị lệch góc */
         width: 100%;        /* Tràn hết chiều ngang */
         display: flex;
         justify-content: space-evenly; /* Chia đều các mục menu */
         padding: 15px 0;
         margin: 0;
-        background: rgba(24, 119, 242, 0.9) /* Màu đặc để không bị xuyên thấu nếu muốn */
+        background: rgba(24, 119, 242, 0.9); /* Màu đặc để không bị xuyên thấu nếu muốn */
         box-sizing: border-box;
 	}
 	.menu a {
