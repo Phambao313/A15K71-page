@@ -84,21 +84,16 @@ img {
         padding: 20px 10px;    /* Giảm padding để tiết kiệm không gian */
     }
 	.menu {
-		flex-direction: row;
-		position: relative;
-		top: 0;
-		z-index: 1000;
-		left: 0;
-		width: 100%;
-		border-radius: 0;
-		justify-content: space-evenly;
-		margin: 0;
-		align-items: center;
-		display: flex;
-		padding: 15px 0;
-		background: rgba(24, 119, 242, 0.9);
-		box-sizing: border-box;
-		text-align: center;
+		position: relative; 
+        top: 0;
+        left: 0;            /* Quan trọng: để 0 để không bị lệch góc */
+        width: 100%;        /* Tràn hết chiều ngang */
+        display: flex;
+        justify-content: space-evenly; /* Chia đều các mục menu */
+        padding: 15px 0;
+        margin: 0;
+        background: rgba(24, 119, 242, 0.9) /* Màu đặc để không bị xuyên thấu nếu muốn */
+        box-sizing: border-box;
 	}
 	.menu a {
 		font-size: 13px;
