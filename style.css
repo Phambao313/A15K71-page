@@ -219,9 +219,9 @@ img, .map-container {
     /* Chỉnh ảnh nền trang chủ */
     .hero-section, .background-image {
         background-attachment: scroll !important; /* Tắt hiệu ứng cố định ảnh vì mobile không hỗ trợ tốt */
-        background-size: cover !important;
-        background-position: center center !important;
-        height: 50vh !important; /* Giảm chiều cao ảnh trên điện thoại cho đỡ choán chỗ */
+        background-size: contain !important;
+        background-position: center top !important;
+        height: auto !important; /* Giảm chiều cao ảnh trên điện thoại cho đỡ choán chỗ */
     }
 
     /* Chỉnh các khối nội dung bị lệch */
