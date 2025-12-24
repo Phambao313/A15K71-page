@@ -199,7 +199,7 @@ area {
 }
 	
 /* Ép tất cả ảnh (bao gồm sơ đồ lớp) không được vượt quá màn hình */
-img, .sodolop, .map-container {
+img, .map-container {
     max-width: 100% !important;
     height: auto !important;
     display: block;
@@ -238,6 +238,7 @@ img, .sodolop, .map-container {
         transform: none !important; /* Bỏ xoay nghiêng trên mobile để dễ đọc */
     }
 }
+
 
 
 
