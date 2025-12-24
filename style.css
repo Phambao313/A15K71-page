@@ -198,8 +198,46 @@ area {
 	font-family: 'Inter', 'Montserrat',monospace;
 }
 	
+/* Ép tất cả ảnh (bao gồm sơ đồ lớp) không được vượt quá màn hình */
+img, .sodolop, .map-container {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
 
+/* Tạo khung cuộn ngang nếu nội dung bên trong vẫn quá to */
+.content-wrapper, main, .container {
+    width: 100%;
+    overflow-x: auto; /* Nếu sơ đồ to quá, nó sẽ cho phép vuốt ngang thay vì bị cắt mất */
+    -webkit-overflow-scrolling: touch;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
+@media screen and (max-width: 768px) {
+    /* Chỉnh ảnh nền trang chủ */
+    .hero-section, .background-image {
+        background-attachment: scroll !important; /* Tắt hiệu ứng cố định ảnh vì mobile không hỗ trợ tốt */
+        background-size: cover !important;
+        background-position: center center !important;
+        height: 50vh !important; /* Giảm chiều cao ảnh trên điện thoại cho đỡ choán chỗ */
+    }
+
+    /* Chỉnh các khối nội dung bị lệch */
+    .station, .memory-item {
+        flex-direction: column !important; /* Xếp dọc thay vì xếp ngang */
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* Chỉnh khung chữ (Note card) */
+    .note-card, .memory-box {
+        width: 95% !important;
+        margin: 20px auto !important;
+        transform: none !important; /* Bỏ xoay nghiêng trên mobile để dễ đọc */
+    }
+}
 
 
 
