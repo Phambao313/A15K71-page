@@ -55,8 +55,8 @@ input[type='checkbox'] {
    /* DỰNG KHUNG SÁCH */
 .book {
 	position: relative;
-	width: 300px;
-	height: 400px;
+	width: 400px;
+	height: 500px;
 	perspective: 1500px;
 }
   /* TỜ GIẤY */
