@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    padding: 0;
+	padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important; /* Luôn giữ mọi thứ ở giữa */
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
+                      url('https://raw.githubusercontent.com/Phambao313/A15K71-page/refs/heads/main/537179528_1159372719558435_4548563004784225889_n.jpg');
+    background-size: cover;
+    background-attachment: fixed ; /* Giữ nền đứng yên khi cuộn trang */
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Lexend', sans-serif;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;             /* Luôn trải dài 100% chiều rộng màn hình */
+    left: 0;
+    z-index: 9999;
+    background: rgba(24, 119, 242, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    display: flex;
+    justify-content: center; /* Căn các mục menu ra giữa thanh ngang */
+    gap: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Các mục menu */
+nav a {
+    text-decoration: none;
+    color: white !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: 0.3s;
+    white-space: nowrap;     /* Không cho chữ bị nhảy xuống dòng */
+}
+nav a:hover {
+    background: white;        /* Đổi nền thành trắng */
+    color: #1877F2 !important; /* Chữ chuyển về màu xanh */
+    transform: translateY(-3px); /* Nút hơi nảy lên */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+/* css của cuốn sách */
+input[type='checkbox'] {
+	display: none;
+}
+   /* DỰNG KHUNG SÁCH */
+.book {
+	position: relative;
+	width: 300px;
+	height: 400px;
+	perspective: 1500px;
+}
+  /* TỜ GIẤY */
+.page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 90%;
+	height: 90%;
+	transform-origin: left;  /* trục xoay sang trái */
+	transform-style: preserve-3d; /* hiệu ứng 3d cho trang sách */
+	transition: transform 1s; /* tốc độ lật trang */
+}
+  /* THIẾT KẾ CHO 2 MẶT TRƯỚC SAU */
+.front , .back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: white;
+	border: 2px solid #FFCC66;
+	backface-visibility: hidden;
+}
+ /* MẶT SAU */
+.back {
+	transform: rotateY(180deg);  /* xoay trục y 180 độ */
+	z-index: 1;
+}
+ /* MẶT TRƯỚC */
+.front {
+	z-index: 2;
+}
+ /* THIẾT KẾ LABEL( CHO SÁCH NẰM TRONG LABEL ) */
+label {
+	display: block;
+	width: 90%;
+	height: 90%;
+	cursor: pointer; /* pointer làm cho con trỏ chuột thành hình bàn tay với ngón trỏ giơ ra */	
+	top: 0;
+	left: 0;
+	position: absolute;	
+}
+ /* LOGIC HOẠT ĐỘNG */
+#p1 { z-index: 7; } /* z-index Càng lớn trang đó càng nằm trên cùng */
+#p2 { z-index: 6; }
+#p3 { z-index: 5; } 
+#p4 { z-index: 4; }
+#p5 { z-index: 3; }
+#p6 { z-index: 2; }
+#p7 { z-index: 1; }
+
+.text-sach {
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+	font-family: 'Playfair Display';
+}
+.text-sach img {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	max-width: 90%;
+}
+/* LOGIC 1: Khi checkbox 1 (#c1) được check -> Tác động lên trang 1 (#p1) */
+#c1:checked ~ .book #p1 {
+    /* Hành động: Lật tờ giấy sang trái */
+    /* Gợi ý: Xoay trục Y âm 180 độ */
+    transform: rotateY(-180deg);
+
+    /* Xếp lại lớp: Khi lật sang trái, nó phải nằm dưới cùng */
+    z-index: 1;
+}
+/* LOGIC 2: Khi checkbox 2 (#c2) được check -> Tác động lên trang 2 (#p2) */
+#c2:checked ~ .book #p2 {
+    transform: rotateY(-180deg);
+    
+    /* Trang 2 lật sang sẽ đè lên trang 1 */
+    z-index: 2; 
+}
+/* LOGIC 3: Tương tự cho trang 3... */
+#c3:checked ~ .book #p3 {
+    transform: rotateY(-180deg);
+    z-index: 3;
+}
+#c4:checked ~ .book #p4 {
+    transform: rotateY(-180deg);
+    z-index: 4;
+}
+#c5:checked ~ .book #p5 {
+    transform: rotateY(-180deg);
+    z-index: 5;
+}
+#c6:checked ~ .book #p6 {
+    transform: rotateY(-180deg);
+    z-index: 6;
+}
+#c7:checked ~ .book #p7 {
+    transform: rotateY(-180deg);
+    z-index: 7;
+}
