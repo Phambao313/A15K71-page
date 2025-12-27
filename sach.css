@@ -68,7 +68,12 @@ input[type='checkbox'] {
 	height: 90%;
 	transform-origin: left;  /* trục xoay sang trái */
 	transform-style: preserve-3d; /* hiệu ứng 3d cho trang sách */
-	transition: transform 1s; /* tốc độ lật trang */
+	/* cubic-bezier: Tạo đường cong tốc độ */
+    /* 0.645, 0.045, 0.355, 1 -> Là công thức "Slow start - Fast middle - Slow end" */
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1); 
+    
+    /* Thêm bóng đổ nhẹ để tạo độ nổi cho trang giấy */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
   /* THIẾT KẾ CHO 2 MẶT TRƯỚC SAU */
 .front , .back {
@@ -77,14 +82,18 @@ input[type='checkbox'] {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background-color: white;
-	border: 2px solid #FFCC66;
+	background: linear-gradient(to right, #e3e3e3, white 10%, white); 
+    border: 1px solid #dcdcdc; /* Viền mỏng màu xám nhạt cho tinh tế */
+    border-radius: 0 5px 5px 0; /* Bo góc nhẹ bên phải cho giống giấy */
 	backface-visibility: hidden;
 }
  /* MẶT SAU */
 .back {
 	transform: rotateY(180deg);  /* xoay trục y 180 độ */
 	z-index: 1;
+	/* Gáy sách của mặt sau nằm bên phải sau khi lật */
+    background: linear-gradient(to left, #e3e3e3, white 10%, white); 
+    border-radius: 5px 0 0 5px; /* Bo góc trái */
 }
  /* MẶT TRƯỚC */
 .front {
