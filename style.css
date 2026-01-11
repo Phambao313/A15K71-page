@@ -1,4 +1,4 @@
- /* 1. Thiết lập chung cho toàn bộ trang */
+/* 1. Thiết lập chung cho toàn bộ trang */
 body {
     margin: 0;
     padding: 0;
@@ -18,37 +18,37 @@ body {
 
 /* Thiết lập cho máy tính (Mặc định) */
 nav {
-    position: static;          /* Giữ menu ở trên cùng khi cuộn */
+    position: fixed;
     top: 0;
-    z-index: 1000;
-    background: rgba(24, 119, 242, 0.9); /* Màu xanh nhưng có độ trong suốt */
-    backdrop-filter: blur(10px);        /* Hiệu ứng kính mờ xuyên thấu */
+    width: 100%;             
+    left: 0;
+    z-index: 9999;
+    background: rgba(24, 119, 242, 0.95);
+    backdrop-filter: blur(10px);
     padding: 15px 0;
     display: flex;
-    justify-content: center;
-    gap: 30px;                          /* Khoảng cách giữa các mục */
+    justify-content: center; 
+    gap: 30px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
+
+/* Các mục menu */
 nav a {
     text-decoration: none;
     color: white !important;
     font-weight: 600;
-    font-size: 16px;
-    padding: 8px 16px;
-    border-radius: 20px;       /* Bo tròn các nút mục */
-    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt */
-    text-transform: uppercase; /* Chữ in hoa cho chuyên nghiệp */
-    letter-spacing: 1px;       /* Giãn chữ ra một chút */
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: 0.3s;
+    white-space: nowrap;     
 }
-/* Hiệu ứng khi di chuột vào từng mục */
 nav a:hover {
-    background: white;        /* Đổi nền thành trắng */
-    color: #1877F2 !important; /* Chữ chuyển về màu xanh */
-    transform: translateY(-3px); /* Nút hơi nảy lên */
+    background: white;        
+    color: #1877F2 !important; 
+    transform: translateY(-3px); 
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Đánh dấu trang đang xem */
 nav a.active {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid white;
@@ -93,14 +93,14 @@ nav a.active {
     flex: 1;                    /* Chiếm 1 phần diện tích (bằng cột trái) */
     display: flex;
     flex-direction: column;
-    justify-content: center; 	/* Căn giữa theo chiều dọc nếu ảnh ngắn */
+    justify-content: center;    /* Căn giữa theo chiều dọc nếu ảnh ngắn */
+	align-items: center;        /* Căn giữa theo chiều ngang luôn cho đẹp */
 }
 
 /* Tiêu đề nội dung phía trên ảnh */
 .content-header {
     font-size: 20px;
-    color: #1C1C1C;             /* Màu xanh chủ đạo */
-	font-family: sansita, baloo;
+    color: #1877F2;             /* Màu xanh chủ đạo */
     margin-bottom: 15px;        /* Khoảng cách từ chữ xuống ảnh */
     font-weight: 800;
     text-shadow: 1px 1px 0px white; /* Viền trắng nhẹ cho chữ dễ đọc */
@@ -208,7 +208,6 @@ nav a.active {
     transform: scale(1.1);
 }
 
-
 /* === RESPONSIVE: CHẾ ĐỘ ĐIỆN THOẠI === */
 @media screen and (max-width: 768px) {
     
@@ -283,6 +282,3 @@ nav a.active {
         display: none; 
     }
 }
-
-
-
