@@ -223,81 +223,33 @@ nav a.active {
 }
 
 /* === RESPONSIVE: CHẾ ĐỘ ĐIỆN THOẠI === */
+/* Khi màn hình nhỏ hơn 768px (Điện thoại/Máy tính bảng nhỏ) */
 @media screen and (max-width: 768px) {
-    
-    /* --- 1. SỬA THANH MENU CHO MOBILE --- */
-    nav {
-        justify-content: flex-start !important; /* Căn lề trái để lướt */
-        overflow-x: auto;       /* Cho phép cuộn ngang nếu màn hình quá bé */
-        padding: 10px 15px !important;
-        gap: 10px !important;   /* Khoảng cách các nút gần lại */
-        white-space: nowrap;    /* Giữ menu trên 1 dòng */
-        
-        /* Ẩn thanh cuộn nhìn cho đẹp */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-    nav::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
-    }
-
-    nav a {
-        font-size: 12px !important; /* Chữ nhỏ lại */
-        padding: 6px 12px !important; /* Nút gọn hơn */
-        border-radius: 15px !important;
-        flex-shrink: 0; /* Đảm bảo nút không bị bóp méo */
-    }
-
-    /* --- 2. GIỮ BỐ CỤC 2 CỘT (Code cũ) --- */
     .hero-section {
-        flex-direction: row !important; /* Giữ hàng ngang */
-        align-items: stretch !important; /* Kéo dãn bằng nhau */
-        gap: 8px !important; 
-        padding: 60px 5px 20px 5px !important; /* Tăng padding-top (60px) để không bị menu che */
-        width: 100% !important;
-        box-sizing: border-box;
+        flex-direction: column; /* Quay về xếp dọc */
+        gap: 30px;
     }
 
     .column-left {
-        padding-right: 5px !important;
-        border-right: 1px solid rgba(24, 119, 242, 0.3) !important;
-        gap: 15px !important;
+        border-right: none;     /* Bỏ đường kẻ dọc */
+        border-bottom: 3px solid rgba(24, 119, 242, 0.3); /* Thêm đường kẻ ngang */
+        padding-right: 0;
+        padding-bottom: 30px;
     }
     
-    .content-header {
-        font-size: 10px !important; /* Chữ tiêu đề siêu nhỏ cho vừa */
-        margin-bottom: 3px !important;
-        text-align: center;
-        line-height: 1.2; /* Dãn dòng thấp */
-        white-space: nowrap; /* Không cho xuống dòng tiêu đề */
-        overflow: hidden;
-        text-overflow: ellipsis; /* Nếu dài quá thì hiện dấu ... */
-    }
-
-    .overlay-box {
-        border-width: 2px !important;
-        border-radius: 6px !important;
-    }
-
-    .image-title {
-        font-size: 9px !important;
-        padding: 4px !important;
-        white-space: nowrap; /* Chữ trong ảnh không xuống dòng */
-    }
-
-    /* Nút Facebook nhỏ gọn */
     .fb-avatar-button {
-        width: 45px;
-        height: 45px;
-        bottom: 60px; /* Đẩy lên cao chút để tránh chạm mép dưới */
-        right: 10px;
+        width: 65px;
+        height: 65px;
+        bottom: 15px;
+        right: 15px;
     }
     .fb-overlay-text {
-        display: none; 
+        font-size: 8px;
     }
 }
 
  
+
 
 
 
