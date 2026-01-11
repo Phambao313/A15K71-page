@@ -8,7 +8,7 @@ body {
     align-items: center; 
     min-height: 100vh;
     background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
-                      url('https://raw.githubusercontent.com/Phambao313/A15K71-page/refs/heads/main/537179528_1159372719558435_4548563004784225889_n.jpg');
+                      url('pbc.jpg');
     background-size: cover;
     background-attachment: fixed ; 
     background-position: center;
@@ -283,5 +283,6 @@ nav a.active {
         display: none; 
     }
 }
+
 
 
