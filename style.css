@@ -8,6 +8,7 @@ body {
     align-items: center; 
     min-height: 100vh;
     font-family: 'Lexend', sans-serif;
+	background-color: #f5f5dc;
 }
 
 /* Thiết lập cho máy tính (Mặc định) */
@@ -297,4 +298,5 @@ nav a.active {
 }
 
  
+
 
