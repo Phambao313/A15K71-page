@@ -170,11 +170,37 @@ nav a.active {
 #nut-trai { left: -25px; }
 #nut-phai { right: -25px; }
 
-/* Mobile: Ẩn nút mũi tên, cho phép vuốt tay */
+/* --- GIAO DIỆN MOBILE (Điện thoại) --- */
 @media (max-width: 768px) {
-    .nav-btn { display: none; }
-    .photo-card { min-width: 180px; height: 260px; } /* Thu nhỏ thẻ trên đt */
-    #nut-trai { left: 0; }
-    #nut-phai { right: 0; }
+    
+    /* 1. Hiện lại nút bấm (quan trọng nhất) */
+    .nav-btn {
+        display: flex; /* Bắt buộc hiện */
+        width: 40px;   /* Nhỏ hơn desktop một chút */
+        height: 40px;
+        font-size: 1rem;
+        background-color: rgba(255, 255, 255, 0.8); /* Màu trắng hơi trong suốt để không che ảnh */
+    }
 
+    /* 2. Đưa nút vào bên trong màn hình */
+    /* Vì màn hình đt nhỏ, không thể để nút lòi ra ngoài -25px được */
+    #nut-trai {
+        left: 5px; /* Cách mép trái 5px */
+    }
+
+    #nut-phai {
+        right: 5px; /* Cách mép phải 5px */
+    }
+
+    /* 3. Chỉnh lại thẻ ảnh nhỏ hơn chút cho vừa màn hình */
+    .photo-card {
+        min-width: 160px; /* Thu nhỏ chiều ngang thẻ */
+        height: 240px;    /* Thu nhỏ chiều cao thẻ */
+    }
+    
+    /* 4. Tiêu đề TỔ 1 nhỏ lại */
+    .thanh-noi-dung h3 {
+        font-size: 1.2rem;
+        padding: 5px 15px;
+    }
 }
