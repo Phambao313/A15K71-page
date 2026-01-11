@@ -1,4 +1,4 @@
-/* 1. Thiết lập chung cho toàn bộ trang */
+ /* 1. Thiết lập chung cho toàn bộ trang */
 body {
     margin: 0;
     padding: 0;
@@ -233,3 +233,4 @@ nav a.active {
         font-size: 8px;
     }
 }
+
