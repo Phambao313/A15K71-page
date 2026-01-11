@@ -112,6 +112,13 @@ nav a.active {
     margin-bottom: 10px;
     font-weight: 800;
     text-transform: uppercase;
+	display: inline-block;
+	background-color: #ffffff;
+	padding: 5px 10px;
+	border: 2px solid #0056b3;
+	border-radius: 20px;
+    letter-spacing: 2px;       /* Các chữ cái dãn ra một chút cho thoáng */
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* Đổ bóng đen mờ để tạo cảm giác nổi 3D */
 }
 
 .header-large {
@@ -291,4 +298,5 @@ nav a.active {
     .fb-avatar-button { width: 45px; height: 45px; bottom: 60px; right: 10px; }
     .fb-overlay-text { display: none; }
 }
+
 
