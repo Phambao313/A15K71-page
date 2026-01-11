@@ -211,53 +211,75 @@ nav a.active {
 
 /* === RESPONSIVE: CHẾ ĐỘ ĐIỆN THOẠI === */
 @media screen and (max-width: 768px) {
-    .hero-section {
-        /* Vẫn giữ hàng ngang, không chuyển thành dọc nữa */
-        flex-direction: row !important; 
+    
+    /* --- 1. SỬA THANH MENU CHO MOBILE --- */
+    nav {
+        justify-content: flex-start !important; /* Căn lề trái để lướt */
+        overflow-x: auto;       /* Cho phép cuộn ngang nếu màn hình quá bé */
+        padding: 10px 15px !important;
+        gap: 10px !important;   /* Khoảng cách các nút gần lại */
+        white-space: nowrap;    /* Giữ menu trên 1 dòng */
         
-        /* Thu nhỏ khoảng cách giữa 2 cột để vừa màn hình */
-        gap: 10px !important; 
-        padding: 10px 5px !important; /* Giảm lề 2 bên */
+        /* Ẩn thanh cuộn nhìn cho đẹp */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    nav a {
+        font-size: 12px !important; /* Chữ nhỏ lại */
+        padding: 6px 12px !important; /* Nút gọn hơn */
+        border-radius: 15px !important;
+        flex-shrink: 0; /* Đảm bảo nút không bị bóp méo */
+    }
+
+    /* --- 2. GIỮ BỐ CỤC 2 CỘT (Code cũ) --- */
+    .hero-section {
+        flex-direction: row !important; /* Giữ hàng ngang */
+        align-items: stretch !important; /* Kéo dãn bằng nhau */
+        gap: 8px !important; 
+        padding: 60px 5px 20px 5px !important; /* Tăng padding-top (60px) để không bị menu che */
         width: 100% !important;
         box-sizing: border-box;
     }
 
     .column-left {
-        /* Giảm khoảng cách và làm đường kẻ mỏng lại */
-        padding-right: 10px !important;
+        padding-right: 5px !important;
         border-right: 1px solid rgba(24, 119, 242, 0.3) !important;
-        gap: 20px !important; /* Khoảng cách giữa 2 ảnh lớp 10-11 nhỏ lại */
+        gap: 15px !important;
     }
     
-    /* Thu nhỏ tiêu đề "Nội dung" để không bị to quá khổ */
     .content-header {
-        font-size: 11px !important; /* Chữ nhỏ lại */
-        margin-bottom: 5px !important;
+        font-size: 10px !important; /* Chữ tiêu đề siêu nhỏ cho vừa */
+        margin-bottom: 3px !important;
         text-align: center;
+        line-height: 1.2; /* Dãn dòng thấp */
+        white-space: nowrap; /* Không cho xuống dòng tiêu đề */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Nếu dài quá thì hiện dấu ... */
     }
 
-    /* Thu nhỏ khung ảnh */
     .overlay-box {
-        border-width: 2px !important; /* Viền ảnh mỏng lại */
-        border-radius: 8px !important;
+        border-width: 2px !important;
+        border-radius: 6px !important;
     }
 
-    /* Thu nhỏ chữ chú thích bên trong ảnh */
     .image-title {
-        font-size: 10px !important;
-        padding: 5px !important;
+        font-size: 9px !important;
+        padding: 4px !important;
+        white-space: nowrap; /* Chữ trong ảnh không xuống dòng */
     }
 
-    /* Chỉnh lại nút Facebook cho đỡ che màn hình */
+    /* Nút Facebook nhỏ gọn */
     .fb-avatar-button {
-        width: 50px;
-        height: 50px;
-        bottom: 10px;
+        width: 45px;
+        height: 45px;
+        bottom: 60px; /* Đẩy lên cao chút để tránh chạm mép dưới */
         right: 10px;
     }
     .fb-overlay-text {
-        display: none; /* Ẩn chữ "Ghé thăm" đi cho đỡ rối mắt */
+        display: none; 
     }
 }
-
-
