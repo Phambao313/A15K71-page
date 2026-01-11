@@ -1,17 +1,35 @@
-/* 1. Thiết lập chung cho toàn bộ trang */
+/* 1. Thiết lập chung */
 body {
     margin: 0;
     padding: 0;
-	padding-top: 100px; /* Tăng khoảng cách một chút để không bị menu che */
+	padding-top: 100px; 
     display: flex;
     flex-direction: column;
     align-items: center; 
     min-height: 100vh;
     font-family: 'Lexend', sans-serif;
-	background-color: #f5f5dc; 
+	background-color: #f5f5dc;
 }
-
-/* Thiết lập cho máy tính (Mặc định) */
+/* --- PHẦN HERO: ẢNH TRƯỜNG --- */
+.school-hero {
+    /* 1. Kích thước & Vị trí */
+    width: 95%;           /* Chiếm 95% chiều ngang để hở ra 2 bên lề */
+    max-width: 1200px;    /* Giới hạn độ rộng tối đa cho đẹp */
+    height: 50vh;         /* Tăng lên 50% chiều cao màn hình (cũ là 33%) để thấy rõ logo hơn */
+    margin-top: 100px;   /* Đẩy ảnh xuống 100px (lớn hơn chiều cao menu) */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+    margin-left: auto;   /* Căn giữa trái */
+    margin-right: auto;  /* Căn giữa phải */
+	/* 2. Bo góc & Trang trí */
+    border-radius: 25px;  /* Bo tròn 4 góc */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Thêm bóng đổ nhẹ cho nổi bật */
+    background-image: url('pbc.jpg'); 
+    /* QUAN TRỌNG: */
+    background-size: cover; /* Dùng 'contain' để ảnh hiển thị ĐẦY ĐỦ, không bị cắt mất logo */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    background-position: center; /* Căn ảnh ra giữa */
+    background-color: #fff; /* Nền trắng đệm ở 2 bên nếu ảnh không phủ hết chiều ngang */
+}
 nav {
     position: fixed;
     top: 0;
@@ -23,11 +41,10 @@ nav {
     padding: 15px 0;
     display: flex;
     justify-content: center; 
-    gap: 30px;
+    gap: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Các mục menu */
 nav a {
     text-decoration: none;
     color: white !important;
@@ -50,108 +67,115 @@ nav a.active {
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-/* --- PHẦN HERO: ẢNH TRƯỜNG --- */
-.school-hero {
-    /* 1. Kích thước & Vị trí */
-    width: 95%;           /* Chiếm 95% chiều ngang để hở ra 2 bên lề */
-    max-width: 1200px;    /* Giới hạn độ rộng tối đa cho đẹp */
-    height: 50vh;         /* Tăng lên 50% chiều cao màn hình (cũ là 33%) để thấy rõ logo hơn */
-    margin-top: 100px;   /* Đẩy ảnh xuống 100px (lớn hơn chiều cao menu) */
-    margin-bottom: 20px; /* Khoảng cách dưới */
-    margin-left: auto;   /* Căn giữa trái */
-    margin-right: auto;  /* Căn giữa phải */
-	/* 2. Bo góc & Trang trí */
-    border-radius: 25px;  /* Bo tròn 4 góc */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Thêm bóng đổ nhẹ cho nổi bật */
-    background-image: url('pbc.jpg'); 
-    /* QUAN TRỌNG: */
-    background-size: cover; /* Dùng 'contain' để ảnh hiển thị ĐẦY ĐỦ, không bị cắt mất logo */
-    background-repeat: no-repeat; /* Không lặp lại ảnh */
-    background-position: center; /* Căn ảnh ra giữa */
-    background-color: #fff; /* Nền trắng đệm ở 2 bên nếu ảnh không phủ hết chiều ngang */
-}
-/* === 3. CẤU TRÚC LAYOUT MỚI (CHIA 2 CỘT) === */
+
+/* === BỐ CỤC CHÍNH (MÁY TÍNH) === */
 
 .hero-section {
-    display: flex;              /* Xếp ngang */
-    flex-direction: row;        /* Hàng ngang */
-    justify-content: center;    /* Căn giữa màn hình */
-    align-items: stretch;    /* Căn các cột bắt đầu từ trên cùng */
-    gap: 40px;                  /* Khoảng cách giữa 2 cột lớn */
+    display: flex;              
+    flex-direction: row;        
+    justify-content: center;    
+    align-items: stretch;       /* 2 cột cao bằng nhau để kẻ đường giữa */
+    gap: 40px;                  
     padding: 20px;
     width: 90%;
-    max-width: 1200px;          /* Giới hạn chiều rộng tối đa */
+    max-width: 1200px;          
 }
 
-/* Định dạng Cột Trái */
+/* CỘT TRÁI (NHỎ HƠN - 35%) */
 .column-left {
-    flex: 1;                    /* Chiếm 1 phần diện tích */
+    flex: 3.5;                  /* Tỷ lệ 3.5 phần */
     display: flex;
-    flex-direction: column;     /* Các ảnh bên trái xếp dọc */
-    gap: 40px;                  /* Khoảng cách giữa 2 ảnh lớp 10 và 11 */
-    padding-right: 40px;        /* Tạo khoảng trống bên phải */
-    border-right: 3px solid rgba(24, 119, 242, 0.3); /* Đường kẻ dọc phân cách */
+    flex-direction: column;     
+    gap: 50px;                  /* Khoảng cách giữa lớp 10 và 11 */
+    padding-right: 30px;        
+    border-right: 2px solid rgba(24, 119, 242, 0.3); /* Đường kẻ dọc */
+    justify-content: center;    /* Căn giữa dọc */
 }
 
-/* Định dạng Cột Phải */
+/* CỘT PHẢI (TO HƠN - 65%) */
 .column-right {
-    flex: 1;                    /* Chiếm 1 phần diện tích (bằng cột trái) */
+    flex: 6.5;                  /* Tỷ lệ 6.5 phần */
     display: flex;
     flex-direction: column;
-    justify-content: center;    /* Căn giữa theo chiều dọc nếu ảnh ngắn */
-	align-items: center;        /* Căn giữa theo chiều ngang luôn cho đẹp */
+    justify-content: center;    
+    align-items: center;        
 }
 
-/* Tiêu đề nội dung phía trên ảnh */
+/* === STYLE CHO NỘI DUNG === */
+
 .content-header {
-    font-size: 20px;
-    color: #1877F2;             /* Màu xanh chủ đạo */
-    margin-bottom: 15px;        /* Khoảng cách từ chữ xuống ảnh */
+    font-size: 18px;
+    color: #1877F2;
+    margin-bottom: 10px;
     font-weight: 800;
-    text-shadow: 1px 1px 0px white; /* Viền trắng nhẹ cho chữ dễ đọc */
     text-transform: uppercase;
 }
 
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;        /* Căn giữa ảnh và chữ */
-    width: 100%;
+.header-large {
+    font-size: 24px; /* Tiêu đề bên phải to hơn */
+    margin-bottom: 20px;
 }
 
-/* === 4. Định dạng khung ảnh (Giữ nguyên hiệu ứng cũ) === */
+/* Layout ngang cho cột trái (Ảnh - Chữ) */
+.horizontal-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Căn giữa chữ theo chiều dọc ảnh */
+    gap: 15px;
+}
+
+.side-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    flex: 1; /* Chữ tự dãn hết phần còn lại */
+    text-align: justify;
+    background: rgba(255,255,255,0.6);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.bottom-text {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    max-width: 90%;
+    background: rgba(255,255,255,0.6);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* === KHUNG ẢNH === */
 .overlay-box {
     animation: fadeInUp 1s ease-out;
-    width: 100%;
-    /* max-width bỏ đi để nó tự co giãn theo cột */
     background-color: white;
-    border: 5px solid white;
+    border: 4px solid white;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    position: relative; 
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer; 
-    border-radius: 15px;      
+    border-radius: 10px;      
     overflow: hidden;         
 }
 
-/* Riêng ảnh bên phải có thể to hơn một chút */
-.box-large {
-    /* Bạn có thể chỉnh custom style cho ảnh to ở đây nếu muốn */
+/* Ảnh cột trái nhỏ gọn */
+.small-box {
+    width: 140px; /* Cố định chiều rộng ảnh trái */
+    flex-shrink: 0; /* Không cho ảnh bị bóp méo */
+}
+
+/* Ảnh cột phải to */
+.big-box {
+    width: 100%; /* Bung hết cỡ cột phải */
 }
 
 .overlay-box:hover {
     transform: scale(1.03); 
     box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
-    z-index: 10; 
 }
 
 .overlay-box img {
@@ -160,33 +184,21 @@ nav a.active {
     display: block;
 }
 
-/* Thông tin trường học bên dưới */
 .footer-info {
     text-align: center;
     line-height: 1.8;
     margin-top: 50px;
     padding-bottom: 100px;
-    background: rgba(255,255,255,0.8); /* Thêm nền mờ để chữ dễ đọc hơn */
+    background: rgba(255,255,255,0.8);
     width: 100%;
     padding-top: 20px;
 }
 
-.image-title {
-    text-align: center;      
-    padding: 10px;           
-    font-size: 16px;         
-    font-weight: bold;       
-    color: #333;             
-    background-color: #fff;  
-}
-
-/* === NÚT FACEBOOK === */
 .fb-avatar-button {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    width: 80px;                  
-    height: 80px;                 
+    width: 80px; height: 80px;                 
     border-radius: 50%;           
     overflow: hidden;             
     display: flex;
@@ -198,58 +210,84 @@ nav a.active {
     border: 3px solid white;      
     transition: transform 0.3s;
 }
-
-.fb-avatar-button img {
-    width: 100%;                  
-    height: 100%;                 
-    object-fit: cover;            
-}
-
+.fb-avatar-button img { width: 100%; height: 100%; object-fit: cover; }
 .fb-overlay-text {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    position: absolute; bottom: 0; width: 100%;
     background: rgba(0, 0, 0, 0.6); 
-    color: white;
-    font-size: 10px;
-    text-align: center;
-    padding: 5px 0;
-    font-weight: bold;
-    font-family: sans-serif;
+    color: white; font-size: 10px; text-align: center;
+    padding: 5px 0; font-weight: bold;
 }
+.fb-avatar-button:hover { transform: scale(1.1); }
 
-.fb-avatar-button:hover {
-    transform: scale(1.1);
-}
-
-/* === RESPONSIVE: CHẾ ĐỘ ĐIỆN THOẠI === */
-/* Khi màn hình nhỏ hơn 768px (Điện thoại/Máy tính bảng nhỏ) */
+/* === RESPONSIVE: ĐIỆN THOẠI === */
 @media screen and (max-width: 768px) {
+    
+    /* Menu lướt ngang */
+    nav {
+        justify-content: flex-start !important;
+        overflow-x: auto;
+        padding: 10px 15px !important;
+        gap: 10px !important;
+        white-space: nowrap;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { font-size: 12px !important; padding: 6px 12px !important; }
+
+    /* Bố cục 2 cột cho Mobile */
     .hero-section {
-        flex-direction: column; /* Quay về xếp dọc */
-        gap: 30px;
+        flex-direction: row !important; /* Vẫn chia 2 cột */
+        gap: 5px !important; 
+        padding: 60px 5px 20px 5px !important;
+        width: 100% !important;
+        align-items: flex-start !important;
     }
 
+    /* Cột trái mobile */
     .column-left {
-        border-right: none;     /* Bỏ đường kẻ dọc */
-        border-bottom: 3px solid rgba(24, 119, 242, 0.3); /* Thêm đường kẻ ngang */
-        padding-right: 0;
-        padding-bottom: 30px;
+        flex: 1 !important; /* Chia đều 50-50 cho dễ nhìn trên đt */
+        padding-right: 5px !important;
+        border-right: 1px solid rgba(24, 119, 242, 0.3) !important;
+        gap: 20px !important;
     }
     
-    .fb-avatar-button {
-        width: 65px;
-        height: 65px;
-        bottom: 15px;
-        right: 15px;
+    /* Cột phải mobile */
+    .column-right {
+        flex: 1 !important;
     }
-    .fb-overlay-text {
-        font-size: 8px;
+
+    /* SỬA LẠI LAYOUT TRONG CỘT TRÁI TRÊN MOBILE */
+    /* Vì cột bé quá nên Ảnh và Chữ phải xếp dọc lại */
+    .horizontal-layout {
+        flex-direction: column !important; /* Xếp dọc */
+        gap: 5px !important;
     }
+    
+    .small-box {
+        width: 100% !important; /* Ảnh bung hết chiều rộng cột */
+    }
+
+    .side-text {
+        font-size: 9px !important; /* Chữ nhỏ lại */
+        padding: 5px !important;
+        text-align: center;
+    }
+
+    .content-header {
+        font-size: 10px !important;
+        margin-bottom: 2px !important;
+        text-align: center;
+    }
+    
+    .header-large { font-size: 11px !important; }
+    
+    .bottom-text {
+        font-size: 9px !important;
+        padding: 5px !important;
+        margin-top: 5px !important;
+    }
+
+    .overlay-box { border-width: 2px !important; border-radius: 6px !important; }
+
+    .fb-avatar-button { width: 45px; height: 45px; bottom: 60px; right: 10px; }
+    .fb-overlay-text { display: none; }
 }
-
- 
-
-
-
-
