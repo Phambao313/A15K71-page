@@ -2,31 +2,32 @@
 body {
     margin: 0;
     padding: 0;
-	padding-top: 80px;
+	padding-top: 100px; /* Tăng khoảng cách một chút để không bị menu che */
     display: flex;
     flex-direction: column;
-    align-items: center !important; /* Luôn giữ mọi thứ ở giữa */
+    align-items: center; 
     min-height: 100vh;
     background-image: linear-gradient(rgba(255, 253, 208, 0.6), rgba(255, 253, 208, 0.6)), 
                       url('https://raw.githubusercontent.com/Phambao313/A15K71-page/refs/heads/main/537179528_1159372719558435_4548563004784225889_n.jpg');
     background-size: cover;
-    background-attachment: fixed ; /* Giữ nền đứng yên khi cuộn trang */
+    background-attachment: fixed ; 
     background-position: center;
     background-repeat: no-repeat;
     font-family: 'Lexend', sans-serif;
 }
+
 /* Thiết lập cho máy tính (Mặc định) */
 nav {
     position: fixed;
     top: 0;
-    width: 100%;             /* Luôn trải dài 100% chiều rộng màn hình */
+    width: 100%;             
     left: 0;
     z-index: 9999;
     background: rgba(24, 119, 242, 0.95);
     backdrop-filter: blur(10px);
     padding: 15px 0;
     display: flex;
-    justify-content: center; /* Căn các mục menu ra giữa thanh ngang */
+    justify-content: center; 
     gap: 30px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
@@ -39,16 +40,15 @@ nav a {
     padding: 10px 20px;
     border-radius: 25px;
     transition: 0.3s;
-    white-space: nowrap;     /* Không cho chữ bị nhảy xuống dòng */
+    white-space: nowrap;     
 }
 nav a:hover {
-    background: white;        /* Đổi nền thành trắng */
-    color: #1877F2 !important; /* Chữ chuyển về màu xanh */
-    transform: translateY(-3px); /* Nút hơi nảy lên */
+    background: white;        
+    color: #1877F2 !important; 
+    transform: translateY(-3px); 
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Đánh dấu trang đang xem */
 nav a.active {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid white;
@@ -65,35 +65,79 @@ nav a.active {
     }
 }
 
-/* 3. Khung bao quanh các ảnh lớp */
+/* === 3. CẤU TRÚC LAYOUT MỚI (CHIA 2 CỘT) === */
+
 .hero-section {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 35px; /* Khoảng cách giữa các tấm ảnh */
-    padding: 40px 20px;
-    width: 100%;
-    max-width: 800px;
+    display: flex;              /* Xếp ngang */
+    flex-direction: row;        /* Hàng ngang */
+    justify-content: center;    /* Căn giữa màn hình */
+    align-items: stretch;    /* Căn các cột bắt đầu từ trên cùng */
+    gap: 40px;                  /* Khoảng cách giữa 2 cột lớn */
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;          /* Giới hạn chiều rộng tối đa */
 }
-/* 4. Định dạng từng khung ảnh */
+
+/* Định dạng Cột Trái */
+.column-left {
+    flex: 1;                    /* Chiếm 1 phần diện tích */
+    display: flex;
+    flex-direction: column;     /* Các ảnh bên trái xếp dọc */
+    gap: 40px;                  /* Khoảng cách giữa 2 ảnh lớp 10 và 11 */
+    padding-right: 40px;        /* Tạo khoảng trống bên phải */
+    border-right: 3px solid rgba(24, 119, 242, 0.3); /* Đường kẻ dọc phân cách */
+}
+
+/* Định dạng Cột Phải */
+.column-right {
+    flex: 1;                    /* Chiếm 1 phần diện tích (bằng cột trái) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 	/* Căn giữa theo chiều dọc nếu ảnh ngắn */
+}
+
+/* Tiêu đề nội dung phía trên ảnh */
+.content-header {
+    font-size: 20px;
+    color: #1C1C1C;             /* Màu xanh chủ đạo */
+	font-family: sansita, baloo;
+    margin-bottom: 15px;        /* Khoảng cách từ chữ xuống ảnh */
+    font-weight: 800;
+    text-shadow: 1px 1px 0px white; /* Viền trắng nhẹ cho chữ dễ đọc */
+    text-transform: uppercase;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* Căn giữa ảnh và chữ */
+    width: 100%;
+}
+
+/* === 4. Định dạng khung ảnh (Giữ nguyên hiệu ứng cũ) === */
 .overlay-box {
     animation: fadeInUp 1s ease-out;
     width: 100%;
-    max-width: 550px; /* Kích thước ảnh vừa đẹp trên máy tính */
+    /* max-width bỏ đi để nó tự co giãn theo cột */
     background-color: white;
     border: 5px solid white;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    position: relative !important; /* Đảm bảo không bị bay lung tung */
+    position: relative; 
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi chỉ vào ảnh */
-    border-radius: 15px;      /* Bo tròn các góc ảnh cho mềm mại */
-    overflow: hidden;         /* Đảm bảo ảnh bên trong cũng bị bo góc theo */
+    cursor: pointer; 
+    border-radius: 15px;      
+    overflow: hidden;         
 }
-/* 5. LỆNH BẠN THÍCH: Hiệu ứng phóng to khi di chuột vào */
+
+/* Riêng ảnh bên phải có thể to hơn một chút */
+.box-large {
+    /* Bạn có thể chỉnh custom style cho ảnh to ở đây nếu muốn */
+}
+
 .overlay-box:hover {
-    transform: scale(1.05); /* Phóng to lên 1.05 lần (5%) */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4); /* Đổ bóng đậm hơn khi phóng to */
-    z-index: 10; /* Đảm bảo ảnh đang chọn nằm trên các ảnh khác */
+    transform: scale(1.03); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+    z-index: 10; 
 }
 
 .overlay-box img {
@@ -102,51 +146,56 @@ nav a.active {
     display: block;
 }
 
-/* 6. Thông tin trường học bên dưới */
+/* Thông tin trường học bên dưới */
 .footer-info {
     text-align: center;
     line-height: 1.8;
-    padding-bottom: 500px; /* Tạo một khoảng trống lớn ở dưới cùng để cuộn cho đã */
+    margin-top: 50px;
+    padding-bottom: 100px;
+    background: rgba(255,255,255,0.8); /* Thêm nền mờ để chữ dễ đọc hơn */
+    width: 100%;
+    padding-top: 20px;
 }
+
 .image-title {
-    text-align: center;      /* Căn giữa chữ */
-    padding: 10px;           /* Tạo khoảng cách xung quanh chữ */
-    font-size: 18px;         /* Độ lớn của chữ */
-    font-weight: bold;       /* Làm chữ đậm lên */
-    color: #333;             /* Màu chữ (xám đậm) */
-    background-color: #fff;  /* Nền trắng cho phần chữ để khớp với viền ảnh */
+    text-align: center;      
+    padding: 10px;           
+    font-size: 16px;         
+    font-weight: bold;       
+    color: #333;             
+    background-color: #fff;  
 }
-/* Định dạng chung cho nút */
+
+/* === NÚT FACEBOOK === */
 .fb-avatar-button {
-    position: fixed !important;
+    position: fixed;
     bottom: 25px;
     right: 25px;
-    width: 80px;                  /* Độ rộng của nút tròn */
-    height: 80px;                 /* Độ cao của nút tròn */
-    border-radius: 50%;           /* Làm nút hình tròn */
-    overflow: hidden;             /* Cắt ảnh thừa để ảnh luôn tròn theo khung */
+    width: 80px;                  
+    height: 80px;                 
+    border-radius: 50%;           
+    overflow: hidden;             
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     z-index: 999999;
     text-decoration: none;
-    border: 3px solid white;      /* Viền trắng cho sang trọng */
+    border: 3px solid white;      
     transition: transform 0.3s;
 }
 
 .fb-avatar-button img {
-    width: 100%;                  /* Ảnh chiếm 100% chiều rộng khung */
-    height: 100%;                 /* Ảnh chiếm 100% chiều cao khung */
-    object-fit: cover;            /* Ảnh tự lấp đầy không bị méo */
+    width: 100%;                  
+    height: 100%;                 
+    object-fit: cover;            
 }
 
-/* Phần chữ mờ đè lên ảnh */
 .fb-overlay-text {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Nền đen mờ */
+    background: rgba(0, 0, 0, 0.6); 
     color: white;
     font-size: 10px;
     text-align: center;
@@ -155,13 +204,25 @@ nav a.active {
     font-family: sans-serif;
 }
 
-/* Hiệu ứng phóng to khi di chuột */
 .fb-avatar-button:hover {
     transform: scale(1.1);
 }
 
-/* Trên điện thoại, làm nút nhỏ lại một chút cho đỡ vướng */
-@media screen and (max-width: 600px) {
+/* === RESPONSIVE: CHẾ ĐỘ ĐIỆN THOẠI === */
+/* Khi màn hình nhỏ hơn 768px (Điện thoại/Máy tính bảng nhỏ) */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        flex-direction: column; /* Quay về xếp dọc */
+        gap: 30px;
+    }
+
+    .column-left {
+        border-right: none;     /* Bỏ đường kẻ dọc */
+        border-bottom: 3px solid rgba(24, 119, 242, 0.3); /* Thêm đường kẻ ngang */
+        padding-right: 0;
+        padding-bottom: 30px;
+    }
+    
     .fb-avatar-button {
         width: 65px;
         height: 65px;
@@ -172,105 +233,3 @@ nav a.active {
         font-size: 8px;
     }
 }
-
-
-/* trang thành viên lớp */
-area {
-    cursor: pointer; /* Hiện bàn tay khi chỉ vào mặt các bạn */
-}
-
-.img-frame {
-	border: 20px solid #99CCFF;
-	border-radius: 16px;
-	box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    transition: all transform 0.3s;
-}
-.sodo-text {
-	margin: 70px 0 0 0;
-	text-align: center;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: rgba(255,250,250,0.9); 
-    background-color: rgba(244,164,96,0.7);
-    border-radius: 10px 10px 0 0; /* Bo tròn 2 góc trên cho đẹp */
-    text-transform: uppercase;
-	font-family: 'Inter', 'Montserrat',monospace;
-}
-	
-/* Ép tất cả ảnh (bao gồm sơ đồ lớp) không được vượt quá màn hình */
-img, .map-container {
-    max-width: 100% !important;
-    height: auto !important;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Tạo khung cuộn ngang nếu nội dung bên trong vẫn quá to */
-.content-wrapper, main, .container {
-    width: 100%;
-    overflow-x: auto; /* Nếu sơ đồ to quá, nó sẽ cho phép vuốt ngang thay vì bị cắt mất */
-    -webkit-overflow-scrolling: touch;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-@media screen and (max-width: 768px) {
-    /* Chỉnh ảnh nền trang chủ */
-    .hero-section, .background-image {
-        background-attachment: scroll !important; /* Tắt hiệu ứng cố định ảnh vì mobile không hỗ trợ tốt */
-        background-size: contain !important;
-        background-position: center top !important;
-        height: auto !important; /* Giảm chiều cao ảnh trên điện thoại cho đỡ choán chỗ */
-    }
-
-    /* Chỉnh các khối nội dung bị lệch */
-    .station, .memory-item {
-        flex-direction: column !important; /* Xếp dọc thay vì xếp ngang */
-        align-items: center !important;
-        text-align: center !important;
-    }
-
-    /* Chỉnh khung chữ (Note card) */
-    .note-card, .memory-box {
-        width: 95% !important;
-        margin: 20px auto !important;
-        transform: none !important; /* Bỏ xoay nghiêng trên mobile để dễ đọc */
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
