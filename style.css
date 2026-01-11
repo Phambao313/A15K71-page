@@ -164,7 +164,7 @@ nav a.active {
 
 /* Ảnh cột trái nhỏ gọn */
 .small-box {
-    width: 140px; /* Cố định chiều rộng ảnh trái */
+    width: 250px; /* Cố định chiều rộng ảnh trái */
     flex-shrink: 0; /* Không cho ảnh bị bóp méo */
 }
 
@@ -291,3 +291,4 @@ nav a.active {
     .fb-avatar-button { width: 45px; height: 45px; bottom: 60px; right: 10px; }
     .fb-overlay-text { display: none; }
 }
+
