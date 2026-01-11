@@ -108,7 +108,7 @@ nav a.active {
 
 .content-header {
     font-size: 18px;
-    color: #1877F2;
+    color: #1c1c1c;
     margin-bottom: 10px;
     font-weight: 800;
     text-transform: uppercase;
@@ -298,5 +298,6 @@ nav a.active {
     .fb-avatar-button { width: 45px; height: 45px; bottom: 60px; right: 10px; }
     .fb-overlay-text { display: none; }
 }
+
 
 
