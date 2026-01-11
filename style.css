@@ -126,23 +126,16 @@ nav a.active {
     margin-bottom: 20px;
 }
 
-/* Layout ngang cho cột trái (Ảnh - Chữ) */
-.horizontal-layout {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Căn giữa chữ theo chiều dọc ảnh */
-    gap: 15px;
-}
 
 .side-text {
+   	margin-top: 15px;
     font-size: 14px;
     color: #333;
-    line-height: 1.5;
-    flex: 1; /* Chữ tự dãn hết phần còn lại */
-    text-align: justify;
-    background: rgba(255,255,255,0.6);
-    padding: 10px;
-    border-radius: 8px;
+    text-align: center;
+    background: rgba(255,255,255,0.6); /* Nền mờ nhẹ cho chữ dễ đọc */
+    padding: 10px 15px;
+    border-radius: 10px;
+    width: 90%;
 }
 
 .bottom-text {
@@ -177,7 +170,7 @@ nav a.active {
 
 /* Ảnh cột phải to */
 .big-box {
-    width: 100%; /* Bung hết cỡ cột phải */
+    width: 80%; /* Bung hết cỡ cột phải */
 }
 
 .overlay-box:hover {
@@ -298,6 +291,7 @@ nav a.active {
     .fb-avatar-button { width: 45px; height: 45px; bottom: 60px; right: 10px; }
     .fb-overlay-text { display: none; }
 }
+
 
 
 
