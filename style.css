@@ -164,13 +164,13 @@ nav a.active {
 
 /* Ảnh cột trái nhỏ gọn */
 .small-box {
-    width: 250px; /* Cố định chiều rộng ảnh trái */
+    width: 95%; /* Cố định chiều rộng ảnh trái */
     flex-shrink: 0; /* Không cho ảnh bị bóp méo */
 }
 
 /* Ảnh cột phải to */
 .big-box {
-    width: 80%; /* Bung hết cỡ cột phải */
+    width: 70%; /* Bung hết cỡ cột phải */
 }
 
 .overlay-box:hover {
@@ -291,6 +291,7 @@ nav a.active {
     .fb-avatar-button { width: 45px; height: 45px; bottom: 60px; right: 10px; }
     .fb-overlay-text { display: none; }
 }
+
 
 
 
