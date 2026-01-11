@@ -208,29 +208,56 @@ nav a.active {
     transform: scale(1.1);
 }
 
+
 /* === RESPONSIVE: CHẾ ĐỘ ĐIỆN THOẠI === */
-/* Khi màn hình nhỏ hơn 768px (Điện thoại/Máy tính bảng nhỏ) */
 @media screen and (max-width: 768px) {
     .hero-section {
-        flex-direction: column; /* Quay về xếp dọc */
-        gap: 30px;
+        /* Vẫn giữ hàng ngang, không chuyển thành dọc nữa */
+        flex-direction: row !important; 
+        
+        /* Thu nhỏ khoảng cách giữa 2 cột để vừa màn hình */
+        gap: 10px !important; 
+        padding: 10px 5px !important; /* Giảm lề 2 bên */
+        width: 100% !important;
+        box-sizing: border-box;
     }
 
     .column-left {
-        border-right: none;     /* Bỏ đường kẻ dọc */
-        border-bottom: 3px solid rgba(24, 119, 242, 0.3); /* Thêm đường kẻ ngang */
-        padding-right: 0;
-        padding-bottom: 30px;
+        /* Giảm khoảng cách và làm đường kẻ mỏng lại */
+        padding-right: 10px !important;
+        border-right: 1px solid rgba(24, 119, 242, 0.3) !important;
+        gap: 20px !important; /* Khoảng cách giữa 2 ảnh lớp 10-11 nhỏ lại */
     }
     
+    /* Thu nhỏ tiêu đề "Nội dung" để không bị to quá khổ */
+    .content-header {
+        font-size: 11px !important; /* Chữ nhỏ lại */
+        margin-bottom: 5px !important;
+        text-align: center;
+    }
+
+    /* Thu nhỏ khung ảnh */
+    .overlay-box {
+        border-width: 2px !important; /* Viền ảnh mỏng lại */
+        border-radius: 8px !important;
+    }
+
+    /* Thu nhỏ chữ chú thích bên trong ảnh */
+    .image-title {
+        font-size: 10px !important;
+        padding: 5px !important;
+    }
+
+    /* Chỉnh lại nút Facebook cho đỡ che màn hình */
     .fb-avatar-button {
-        width: 65px;
-        height: 65px;
-        bottom: 15px;
-        right: 15px;
+        width: 50px;
+        height: 50px;
+        bottom: 10px;
+        right: 10px;
     }
     .fb-overlay-text {
-        font-size: 8px;
+        display: none; /* Ẩn chữ "Ghé thăm" đi cho đỡ rối mắt */
     }
 }
+
 
