@@ -1,4 +1,4 @@
-* {
+* { 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -177,3 +177,4 @@ nav a.active {
     #nut-trai-1,#nut-trai-2,#nut-trai-3, #nut-trai-4 { left: 0; }
     #nut-phai-1, #nut-phai-2, #nut-phai-3, #nut-phai-4 { right: 0; }
 }
+
