@@ -21,67 +21,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    treasureChestContainer.addEventListener('click', async () => {
-        if (isChestOpen) return;
+  treasureChestContainer.addEventListener('click', async () => {
+    if (isChestOpen) return;
 
-        treasureChest.classList.add('shake');
+    // 1. Hiệu ứng lắc rương luôn chạy trước
+    treasureChest.classList.add('shake');
 
-        setTimeout(async () => {
-            treasureChest.classList.remove('shake');
-            treasureChest.src = 'ảnh rương mở.png';
+    setTimeout(async () => {
+        // 2. ÉP RƯƠNG PHẢI MỞ (Để đảm bảo không bị kẹt dù ảnh lỗi)
+        treasureChest.classList.remove('shake');
+        treasureChest.src = 'chest-open.png'; 
+        isChestOpen = true;
 
+        try {
             const images = await fetchApprovedImages();
-            
-            if (images.length === 0) {
-                alert('Rương hiện đang trống, hãy chờ admin duyệt ảnh nhé!');
-                return;
-            }
+            if (!images || images.length === 0) return;
 
-            // Tính toán vị trí và áp dụng hiệu ứng cho từng ảnh
+            // 3. TÍNH TOÁN VỊ TRÍ AN TOÀN (Đây là phần bạn vừa thêm dẫn đến lỗi)
+            // Sử dụng Math.min để ép ảnh không bao giờ vượt quá biên màn hình
+            const containerW = photoGrid.offsetWidth || window.innerWidth;
+            const containerH = photoGrid.offsetHeight || 600;
+
             images.forEach((imgData, index) => {
-                const randomRotation = Math.random() * 30 - 15; // -15 đến 15 độ
+                const imgW = 200; // Chiều rộng ảnh
+                const imgH = 150; // Chiều cao ảnh
+
+                // Tọa độ ngẫu nhiên nhưng trừ đi kích thước ảnh và lề 50px
+                const posX = Math.random() * (containerW - imgW - 100) + 50;
+                const posY = Math.random() * (containerH - imgH - 100) + 50;
+                const rotation = Math.random() * 30 - 15;
+
+                const item = document.createElement('div');
+                item.className = 'grid-item';
                 
-                // Tính toán vị trí ngẫu nhiên cho mỗi ảnh trong photoGrid
-                // Tọa độ X và Y dựa trên kích thước của photoGrid
-                const gridWidth = photoGrid.offsetWidth;
-                const gridHeight = photoGrid.offsetHeight; // Có thể cần điều chỉnh min-height của photo-grid
-                
-                const finalWidth = 200; // Kích thước cuối cùng của ảnh
-                const finalHeight = 150;
-                
-                // Vị trí ngẫu nhiên trong khoảng an toàn (tránh ra ngoài mép)
-                const endX = Math.random() * (gridWidth - finalWidth) + (finalWidth / 2);
-                const endY = Math.random() * (gridHeight - finalHeight) + (finalHeight / 2);
+                // Truyền tọa độ vào CSS
+                item.style.left = "0"; item.style.top = "0"; // Reset vị trí gốc
+                item.style.setProperty('--end-x', `${posX}px`);
+                item.style.setProperty('--end-y', `${posY}px`);
+                item.style.setProperty('--random-rotation', `${rotation}deg`);
+                item.style.setProperty('--animation-delay', `${index * 0.2}s`);
 
-                const animationDelay = index * 0.05; // Mỗi ảnh nhảy ra cách nhau 0.1s
-                const animationDuration = 0.8; // Thời gian hiệu ứng nhảy
+                item.innerHTML = `<img src="${imgData.imageUrl}" alt="Kỷ niệm">`;
+                photoGrid.appendChild(item);
 
-                const gridItem = document.createElement('div');
-                gridItem.className = 'grid-item';
-                gridItem.style.setProperty('--random-rotation', randomRotation);
-                gridItem.style.setProperty('--end-x', `${endX}px`);
-                gridItem.style.setProperty('--end-y', `${endY}px`);
-                gridItem.style.setProperty('--animation-delay', `${animationDelay}s`);
-                gridItem.style.setProperty('--animation-duration', `${animationDuration}s`);
-                gridItem.style.setProperty('--final-width', `${finalWidth}px`);
-                gridItem.style.setProperty('--final-height', `${finalHeight}px`);
-
-
-                gridItem.innerHTML = `<img src="${imgData.imageUrl}" alt="${imgData.name}" title="Từ: ${imgData.name}">`;
-                photoGrid.appendChild(gridItem);
-
-                // Kích hoạt animation
-                setTimeout(() => {
-                    gridItem.classList.add('animate-pop-out');
-                }, 10); // Một delay nhỏ để đảm bảo thuộc tính CSS được áp dụng trước animation
+                setTimeout(() => item.classList.add('animate-pop-out'), 50);
             });
-
-            photoGrid.classList.add('open');
-            isChestOpen = true;
-
-            setupImageZoom();
-        }, 800);
-    });
+        } catch (e) {
+            console.error("Lỗi xử lý ảnh nhảy ra:", e);
+        }
+    }, 800);
+});
 
     function doGet() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -148,4 +137,5 @@ const endY = Math.random() * (gridHeight - finalHeight - 40) + (finalHeight / 2)
 const isMobile = window.innerWidth < 768;
 const finalWidth = isMobile ? 140 : 200; 
 const finalHeight = isMobile ? 100 : 150;
+
 
