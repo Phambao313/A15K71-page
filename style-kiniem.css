@@ -1,0 +1,181 @@
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Itim&family=Lexend:wght@400;800&display=swap');
+
+:root {
+    --bg-color: #fcf5eb;
+    --primary-color: #7a492b; /* Màu gỗ rương */
+    --accent-color: #ffd700; /* Màu vàng kim */
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    font-family: 'Lexend', sans-serif;
+    overflow-x: hidden;
+    padding-top: 80px; /* Đẩy nội dung xuống tránh menu */
+}
+
+/* Nav (giữ nguyên như cũ nếu đã fix lỗi) */
+nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
+    background: #1877F2; display: flex; justify-content: center;
+    align-items: center; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+nav a { text-decoration: none; color: white; font-size: 18px; padding: 8px 18px; border-radius: 25px; transition: 0.3s; }
+nav a.active-nav { background: white; color: #1877F2; }
+
+/* Tiêu đề trang */
+.page-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    text-align: center;
+    color: var(--primary-color);
+    margin: 50px 0 30px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Rương kho báu */
+.treasure-chest-container {
+    text-align: center;
+    margin: 80px auto;
+    cursor: pointer;
+    position: relative;
+    width: 300px; /* Kích thước rương */
+    height: 300px;
+}
+
+.treasure-chest-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hiệu ứng lắc rương */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-1deg); }
+    20%, 80% { transform: translate3d(2px, 0, 0) rotate(2deg); }
+    30%, 70% { transform: translate3d(-4px, 0, 0) rotate(-4deg); }
+    40%, 60% { transform: translate3d(4px, 0, 0) rotate(4deg); }
+    50% { transform: translate3d(-4px, 0, 0) rotate(-4deg); }
+}
+
+.sparkles {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 3rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.click-text {
+    font-family: 'Itim', cursive;
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 15px;
+}
+
+/* Khu vực hiển thị ảnh sau khi mở rương */
+.photo-grid {
+    display: flex;
+    flex-wrap: wrap; /* Tự động xuống dòng */
+    justify-content: center;
+    gap: 25px; /* Khoảng cách giữa các ảnh */
+    margin-top: 50px;
+    padding: 20px;
+    opacity: 0; /* Mặc định ẩn */
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.photo-grid.open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.grid-item {
+    position: relative;
+    width: 250px; /* Kích thước ảnh nhỏ ban đầu */
+    height: 180px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(calc(var(--random-rotation) * 1deg)); /* Xoay lộn xộn */
+}
+
+.grid-item:hover {
+    transform: scale(1.1) rotate(calc(var(--random-rotation) * 1deg)); /* Phóng to và giữ độ xoay */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 10; /* Đưa ảnh lên trên khi hover */
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy khung */
+    display: block;
+}
+
+/* Popup xem ảnh Full màn hình */
+.modal {
+    display: none; /* Ẩn mặc định */
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+    max-height: 90%;
+    object-fit: contain;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+.close-button {
+    position: absolute;
+    top: 15px; right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.close-button:hover, .close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-title { font-size: 3rem; margin-top: 30px; }
+    .treasure-chest-container { margin: 50px auto; width: 200px; height: 200px; }
+    .click-text { font-size: 1rem; }
+    .photo-grid { gap: 15px; padding: 10px; }
+    .grid-item { width: 150px; height: 100px; }
+    .modal-content { width: 95%; }
+}
