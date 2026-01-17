@@ -132,4 +132,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === imageModal) imageModal.style.display = "none";
     });
 });
+// Lấy kích thước thực tế của khung chứa ảnh
+const gridWidth = photoGrid.clientWidth;
+const gridHeight = photoGrid.clientHeight;
+
+// Kích thước ảnh bạn muốn hiển thị
+const finalWidth = 200; 
+const finalHeight = 150;
+
+// Tính toán tọa độ ngẫu nhiên NHƯNG phải nằm TRONG khung
+// Chúng ta chừa ra 20px lề để ảnh không dính sát mép
+const endX = Math.random() * (gridWidth - finalWidth - 40) + (finalWidth / 2) + 20;
+const endY = Math.random() * (gridHeight - finalHeight - 40) + (finalHeight / 2) + 20;
+// Kiểm tra nếu là điện thoại thì cho ảnh nhỏ lại
+const isMobile = window.innerWidth < 768;
+const finalWidth = isMobile ? 140 : 200; 
+const finalHeight = isMobile ? 100 : 150;
 
