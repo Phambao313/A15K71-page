@@ -54,6 +54,16 @@ nav a.active-nav { background: white; color: #1877F2; }
     object-fit: contain;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); /* Thêm bóng đổ cho rương nhìn "ngầu" hơn */
 }
+@media (max-width: 768px) {
+    .treasure-chest-container {
+        width: 80%; /* Rương chiếm 80% chiều ngang điện thoại */
+        margin: 20px auto;
+    }
+    
+    .page-title {
+        font-size: 2.5rem; /* Thu nhỏ tiêu đề để cân bằng với rương */
+    }
+}
 
 /* Hiệu ứng lắc rương */
 .shake {
@@ -218,4 +228,5 @@ nav a.active-nav { background: white; color: #1877F2; }
     border: 2px dashed rgba(122, 73, 43, 0.2); /* Vẽ khung mờ để bạn dễ căn chỉnh */
     border-radius: 20px;
 }
+
 
