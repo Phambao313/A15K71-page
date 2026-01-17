@@ -105,53 +105,42 @@ nav a.active-nav { background: white; color: #1877F2; }
 }
 /* Container cho nút ngọc */
 .gem-button-container {
-    display: flex; /* Dùng flexbox để căn chỉnh ngọc và chữ */
-    flex-direction: column; /* Xếp ngọc trên, chữ dưới */
-    align-items: center; /* Căn giữa theo chiều ngang */
-    justify-content: center; /* Căn giữa theo chiều dọc */
-    position: fixed; /* Giữ nút cố định trên màn hình */
-    bottom: 30px; /* Cách đáy màn hình 30px */
-    right: 30px; /* Cách lề phải 30px */
-    z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
-    text-decoration: none; /* Bỏ gạch chân link */
-    color: #fff; /* Màu chữ trắng */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Tạo bóng cho chữ */
-    transition: transform 0.3s ease; /* Hiệu ứng khi hover */
-}
-
-.gem-button-container {
-    position: fixed !important; /* Dùng !important để ghi đè mọi lệnh khác */
-    bottom: 30px;              /* Cách đáy 30px */
-    right: 30px;               /* Cách lề phải 30px */
-    display: flex;
-    flex-direction: column;
+    position: fixed !important; /* Luôn nổi trên màn hình khi cuộn */
+    top: 100px;                /* Cách đỉnh màn hình 100px (để tránh đè vào Menu) */
+    right: 20px;               /* Cách lề phải 20px */
+    display: flex !important;  /* Hiện lại container */
+    flex-direction: column;    /* Chữ nằm dưới ảnh */
     align-items: center;
-    text-decoration: none;
-    z-index: 99999;            /* Số lớn để luôn nằm trên cùng mọi thứ */
-    pointer-events: auto;      /* Đảm bảo bấm được */
+    z-index: 999999 !important; /* Đảm bảo nổi lên trên mọi thứ khác */
+    text-decoration: none !important;
+    pointer-events: auto !important;
 }
 
 .gem-icon {
-    width: 70px;               /* Kích thước vừa phải */
-    height: 70px;
+    width: 60px;               /* Kích thước viên ngọc */
+    height: 60px;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
-    animation: gemFloat 3s ease-in-out infinite; /* Hiệu ứng bay bổng */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9));
+    animation: gemRotate 4s linear infinite; /* Hiệu ứng xoay nhẹ cho sinh động */
 }
 
 .gem-text {
-    margin-top: 8px;
-    color: #ffcc00;            /* Màu vàng cho hợp với ngọc */
+    display: block !important; /* Ép dòng chữ phải hiện ra */
+    margin-top: 5px;
+    color: #ffcc00;            /* Màu vàng kim */
+    font-size: 12px;
     font-weight: bold;
-    font-size: 14px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    white-space: nowrap;       /* Không cho chữ bị nhảy dòng */
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,1); /* Đổ bóng đen để chữ nổi trên nền tối */
+    width: 80px;               /* Giới hạn độ rộng để chữ tự xuống dòng nếu cần */
+    line-height: 1.2;
 }
 
-/* Hiệu ứng bay lên xuống nhẹ nhàng */
-@keyframes gemFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+/* Hiệu ứng xoay lấp lánh */
+@keyframes gemRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
 }
 
 /* Điều chỉnh trên thiết bị di động */
@@ -168,6 +157,7 @@ nav a.active-nav { background: white; color: #1877F2; }
         font-size: 0.8em;
     }
 }
+
 
 
 
