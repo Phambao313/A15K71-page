@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Kho báu hồi ức - A15</title>
-    
+    <title>Rương Kho Báu Hồi Ức A15</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Itim&family=Lexend:wght@400;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style-kiniem.css">
 </head>
 <body>
 
@@ -19,56 +16,23 @@
         <a href="sachkiniem.html"> Sách của A15 </a>
     </nav>
 
-    <div class="map-wrapper">
-        <svg class="svg-path" viewBox="0 0 500 2500" preserveAspectRatio="none">
-            <path d="M250,0 Q450,200 250,400 T250,800 T250,1200 T250,1600 T250,2000" 
-                  fill="none" stroke="#d4a373" stroke-width="6" stroke-dasharray="20" />
-        </svg>
+    <div class="treasure-wrapper">
+        <h1 class="page-title">Rương Kho Báu Hồi Ức A15</h1>
 
-        <h1 class="big-title" data-aos="zoom-in">Kho Báu Hồi Ức A15</h1>
-
-        <div class="station">
-            <div class="photo-frame" data-aos="zoom-in" data-aos-duration="1500">
-                <img src="gen-n-z7324230087851_d140f27750505b3558bdac495d44cc49.jpg" alt="Kỷ niệm 1">
-            </div>
-            <div class="note-card" data-aos="fade-left">
-                <h3>Trạm Xuất Phát</h3>
-                <p>Nơi mọi thứ bắt đầu. Những người bạn mới tại ngôi trường Phan Bội Châu thân yêu.</p>
-            </div>
+        <div class="treasure-chest-container" id="treasureChestContainer">
+            <img src="chest-closed.png" alt="Rương kho báu đóng" class="treasure-chest-img" id="treasureChest">
+            <div class="sparkles" id="sparkles">✨</div>
+            <p class="click-text">Nhấn vào rương để mở kho báu!</p>
         </div>
 
-        <div class="station">
-            <div class="photo-frame" data-aos="zoom-in" data-aos-duration="1500">
-                <img src="gen-h-z7324240608743_3fddbe8c36a92ded9ddd77b37985aed4.jpg" alt="Kỷ niệm 2">
+        <div class="photo-grid" id="photoGrid">
             </div>
-            <div class="note-card" data-aos="fade-right">
-                <h3>Thử Thách Đầu Tiên</h3>
-                <p>Văn nghệ văn ngủng, mệt thật đấy nhưng mà cũng vui à nha</p>
-            </div>
-        </div>
-
-        <div class="station">
-            <div class="photo-frame" data-aos="zoom-in" data-aos-duration="1500">
-                <img src="anh3.jpg" alt="Kỷ niệm 3">
-            </div>
-            <div class="note-card" data-aos="fade-left">
-                <h3>Về Đích Rực Rỡ</h3>
-                <p>Những giọt nước mắt và nụ cười ngày chia tay. Mãi mãi là một gia đình!</p>
-            </div>
-        </div>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            offset: 350,  
-            duration: 1000,
-            once: false,
-            mirror: true
-        });
-    </script>
-</body>
+    <div id="imageModal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script-kiniem.js"></script> </body>
 </html>
-
-
-
