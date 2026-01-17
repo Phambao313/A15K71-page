@@ -1,96 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
     const treasureChestContainer = document.getElementById('treasureChestContainer');
     const treasureChest = document.getElementById('treasureChest');
-    const sparkles = document.getElementById('sparkles');
     const photoGrid = document.getElementById('photoGrid');
-    const clickText = document.querySelector('.click-text');
-
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const closeButton = document.querySelector('.close-button');
 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwvUKBMuZWunxH1TH1X-HzX-dsPRfZVbKhjQLrVJKKAIA9I4r_iYczutMvZYiST1YHB/exec'; // Thay bằng URL của bạn
+
     let isChestOpen = false;
 
-    // Hàm giả lập dữ liệu ảnh từ Google Sheets
-    // Thực tế bạn sẽ thay thế bằng URL AppScript của bạn
     async function fetchApprovedImages() {
-        // Đây là ví dụ ảnh tĩnh. Bạn sẽ thay thế bằng:
-        // const scriptURL = 'ĐƯỜNG_DẪN_URL_APPSCRIPT_CỦA_BẠN';
-        // const response = await fetch(scriptURL);
-        // const data = await response.json();
-        // return data.map(item => item.imageUrl);
-
-        return [
-            "", // Thay bằng link ảnh thật của bạn
-            "https://i.imgur.com/example2.jpg",
-            "https://i.imgur.com/example3.jpg",
-            "https://i.imgur.com/example4.jpg",
-            "https://i.imgur.com/example5.jpg",
-            "https://i.imgur.com/example6.jpg",
-            "https://i.imgur.com/example7.jpg",
-            "https://i.imgur.com/example8.jpg",
-            "https://i.imgur.com/example9.jpg",
-            "https://i.imgur.com/example10.jpg"
-        ];
+        try {
+            const response = await fetch(scriptURL);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Lỗi khi tải ảnh:', error);
+            return [];
+        }
     }
 
-    // Xử lý khi nhấn vào rương
     treasureChestContainer.addEventListener('click', async () => {
-        if (isChestOpen) return; // Chỉ mở 1 lần
+        if (isChestOpen) return;
 
-        // 1. Hiệu ứng lắc rương
         treasureChest.classList.add('shake');
-        sparkles.style.opacity = 1;
-        clickText.style.opacity = 0;
 
         setTimeout(async () => {
             treasureChest.classList.remove('shake');
-            sparkles.style.opacity = 0;
+            treasureChest.src = 'ảnh rương mở.png';
 
-            // 2. Thay ảnh rương đóng thành rương mở
-            treasureChest.src = 'ảnh rương mở.png'; // Bạn cần ảnh rương mở
-            treasureChest.alt = 'Rương kho báu mở';
-
-            // 3. Tải ảnh và hiển thị
-            const imageUrls = await fetchApprovedImages();
+            const images = await fetchApprovedImages();
             
-            photoGrid.innerHTML = imageUrls.map(url => {
-                const randomRotation = Math.random() * 20 - 10; // Xoay ngẫu nhiên từ -10 đến 10 độ
-                return `
-                    <div class="grid-item" style="--random-rotation: ${randomRotation};">
-                        <img src="${url}" alt="Kỷ niệm">
-                    </div>
-                `;
-            }).join('');
+            if (images.length === 0) {
+                alert('Rương hiện đang trống, hãy chờ admin duyệt ảnh nhé!');
+                return;
+            }
+
+            // Tính toán vị trí và áp dụng hiệu ứng cho từng ảnh
+            images.forEach((imgData, index) => {
+                const randomRotation = Math.random() * 30 - 15; // -15 đến 15 độ
+                
+                // Tính toán vị trí ngẫu nhiên cho mỗi ảnh trong photoGrid
+                // Tọa độ X và Y dựa trên kích thước của photoGrid
+                const gridWidth = photoGrid.offsetWidth;
+                const gridHeight = photoGrid.offsetHeight; // Có thể cần điều chỉnh min-height của photo-grid
+                
+                const finalWidth = 200; // Kích thước cuối cùng của ảnh
+                const finalHeight = 150;
+                
+                // Vị trí ngẫu nhiên trong khoảng an toàn (tránh ra ngoài mép)
+                const endX = Math.random() * (gridWidth - finalWidth) + (finalWidth / 2);
+                const endY = Math.random() * (gridHeight - finalHeight) + (finalHeight / 2);
+
+                const animationDelay = index * 0.05; // Mỗi ảnh nhảy ra cách nhau 0.1s
+                const animationDuration = 0.8; // Thời gian hiệu ứng nhảy
+
+                const gridItem = document.createElement('div');
+                gridItem.className = 'grid-item';
+                gridItem.style.setProperty('--random-rotation', randomRotation);
+                gridItem.style.setProperty('--end-x', `${endX}px`);
+                gridItem.style.setProperty('--end-y', `${endY}px`);
+                gridItem.style.setProperty('--animation-delay', `${animationDelay}s`);
+                gridItem.style.setProperty('--animation-duration', `${animationDuration}s`);
+                gridItem.style.setProperty('--final-width', `${finalWidth}px`);
+                gridItem.style.setProperty('--final-height', `${finalHeight}px`);
+
+
+                gridItem.innerHTML = `<img src="${imgData.imageUrl}" alt="${imgData.name}" title="Từ: ${imgData.name}">`;
+                photoGrid.appendChild(gridItem);
+
+                // Kích hoạt animation
+                setTimeout(() => {
+                    gridItem.classList.add('animate-pop-out');
+                }, 10); // Một delay nhỏ để đảm bảo thuộc tính CSS được áp dụng trước animation
+            });
 
             photoGrid.classList.add('open');
             isChestOpen = true;
 
-            // Gắn sự kiện click cho từng ảnh trong grid
-            document.querySelectorAll('.grid-item img').forEach(img => {
-                img.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Ngăn sự kiện click từ ảnh lan ra các phần tử khác
-                    modalImage.src = e.target.src;
-                    imageModal.style.display = "block";
-                });
+            setupImageZoom();
+        }, 800);
+    });
+
+    function setupImageZoom() {
+        // Gắn sự kiện click cho từng ảnh trong grid (chỉ sau khi chúng đã được tạo ra)
+        document.querySelectorAll('.grid-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImage.src = img.src;
+                imageModal.style.display = "flex";
             });
+        });
+    }
 
-        }, 800); // Đợi hiệu ứng lắc xong thì mở rương
+    closeButton.addEventListener('click', () => imageModal.style.display = "none");
+    window.addEventListener('click', (e) => {
+        if (e.target === imageModal) imageModal.style.display = "none";
     });
-
-    // Đóng Popup ảnh
-    closeButton.addEventListener('click', () => {
-        imageModal.style.display = "none";
-    });
-    imageModal.addEventListener('click', (e) => {
-        if (e.target === imageModal) { // Chỉ đóng khi click vào nền đen
-            imageModal.style.display = "none";
-        }
-    });
-
-    // Tạo ảnh rương đóng và mở (bạn cần tự tạo hoặc tìm ảnh PNG)
-    // Hoặc tải ảnh mẫu sau:
-    // chest-closed.png: https://i.imgur.com/4X1YgqV.png
-    // chest-open.png:   https://i.imgur.com/tX5N0tD.png
-
 });
