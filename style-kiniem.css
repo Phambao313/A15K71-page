@@ -38,18 +38,21 @@ nav a.active-nav { background: white; color: #1877F2; }
 /* Rương kho báu */
 .treasure-chest-container {
     text-align: center;
-    margin: 80px auto;
+    margin: 40px auto; /* Thu hẹp lề trên dưới để nhường chỗ cho ảnh */
     cursor: pointer;
     position: relative;
-    width: 300px; /* Kích thước rương */
-    height: 300px;
+    
+    /* Chỉnh kích thước ở đây */
+    width: 450px;  /* Tăng từ 300px lên 450px hoặc to hơn tùy bạn */
+    height: auto;  /* Để height tự động theo tỉ lệ ảnh rương */
+    z-index: 5;    /* Đảm bảo rương nằm trên nền nhưng dưới ảnh khi nhảy ra */
 }
 
 .treasure-chest-img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
-    transition: transform 0.3s ease-in-out;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); /* Thêm bóng đổ cho rương nhìn "ngầu" hơn */
 }
 
 /* Hiệu ứng lắc rương */
@@ -215,3 +218,4 @@ nav a.active-nav { background: white; color: #1877F2; }
     border: 2px dashed rgba(122, 73, 43, 0.2); /* Vẽ khung mờ để bạn dễ căn chỉnh */
     border-radius: 20px;
 }
+
