@@ -6,21 +6,40 @@ document.addEventListener('DOMContentLoaded', () => {
     let isChestOpen = false;
 
     // 1. Hàm lấy và xử lý dữ liệu Drive
-    async function fetchApprovedImages() {
-        try {
-            const response = await fetch(scriptURL);
-            const data = await response.json();
-            return data.map(item => {
-                let url = item.imageUrl;
-                // Chuyển link Drive sang Direct Link
-                if (url.includes('drive.google.com')) {
-                    const id = url.split('id=')[1] || url.split('/d/')[1].split('/')[0];
-                    url = `https://drive.google.com/uc?export=view&id=${id}`;
+   async function fetchApprovedImages() {
+    try {
+        const response = await fetch(scriptURL);
+        const data = await response.json();
+        
+        return data.map(item => {
+            let rawUrl = item.imageUrl; // Lấy link từ cột B của bạn
+            let directUrl = rawUrl;
+
+            // Xử lý link Google Drive dựa trên hình ảnh image_d43b51.png
+            if (rawUrl.includes('drive.google.com')) {
+                let fileId = "";
+                if (rawUrl.includes('id=')) {
+                    fileId = rawUrl.split('id=')[1].split('&')[0];
+                } else if (rawUrl.includes('/d/')) {
+                    fileId = rawUrl.split('/d/')[1].split('/')[0];
                 }
-                return { ...item, imageUrl: url };
-            });
-        } catch (e) { return []; }
+                
+                if (fileId) {
+                    // Chuyển sang link Direct để trình duyệt đọc được
+                    directUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                }
+            }
+            
+            return {
+                imageUrl: directUrl,
+                name: item.name || "Kỷ niệm"
+            };
+        });
+    } catch (e) {
+        console.error("Lỗi lấy dữ liệu:", e);
+        return [];
     }
+}
 
     // 2. Sự kiện click mở rương
     chestContainer.addEventListener('click', async () => {
@@ -81,3 +100,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('imageModal').style.display = "none";
     });
 });
+
