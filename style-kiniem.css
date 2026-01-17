@@ -205,3 +205,13 @@ nav a.active-nav { background: white; color: #1877F2; }
     .modal-content { width: 95%; }
 
 }
+.photo-grid {
+    position: relative;
+    width: 90%;            /* Chiều ngang chiếm 90% màn hình */
+    max-width: 1200px;
+    min-height: 600px;     /* Đủ cao để ảnh không đè lên nhau quá nhiều */
+    margin: 50px auto;     /* Căn giữa */
+    overflow: hidden;      /* QUAN TRỌNG: Cắt bỏ những gì văng ra ngoài khung */
+    border: 2px dashed rgba(122, 73, 43, 0.2); /* Vẽ khung mờ để bạn dễ căn chỉnh */
+    border-radius: 20px;
+}
