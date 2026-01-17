@@ -11,7 +11,7 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     font-family: 'Lexend', sans-serif;
-    overflow-x: hidden;
+    overflow-x: visible;
     padding-top: 80px; /* Đẩy nội dung xuống tránh menu */
 }
 
@@ -162,6 +162,7 @@ nav a.active-nav { background: white; color: #1877F2; }
         font-size: 0.8em;
     }
 }
+
 
 
 
