@@ -82,51 +82,76 @@ nav a.active-nav { background: white; color: #1877F2; }
     margin-top: 15px;
 }
 
-/* Khu vực hiển thị ảnh sau khi mở rương */
-.photo-grid {
-    display: flex;
-    flex-wrap: wrap; /* Tự động xuống dòng */
-    justify-content: center;
-    gap: 25px; /* Khoảng cách giữa các ảnh */
-    margin-top: 50px;
-    padding: 20px;
-    opacity: 0; /* Mặc định ẩn */
-    transform: translateY(50px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.photo-grid.open {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* Các hiệu ứng cơ bản cho ảnh trong lưới */
 .grid-item {
-    position: relative;
-    width: 250px; /* Kích thước ảnh nhỏ ban đầu */
-    height: 180px;
-    overflow: hidden;
+    position: absolute; /* Đặt vị trí tuyệt đối để chúng ta điều khiển */
+    width: 0;           /* Bắt đầu từ kích thước rất nhỏ */
+    height: 0;          /* Bắt đầu từ kích thước rất nhỏ */
+    opacity: 0;         /* Ẩn ảnh ban đầu */
+    left: 50%;          /* Bắt đầu từ giữa rương */
+    top: 50%;           /* Bắt đầu từ giữa rương */
+    transform: translate(-50%, -50%) scale(0) rotate(0deg); /* Giảm kích thước và xoay về 0 */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, z-index 0.1s;
     cursor: pointer;
     background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(calc(var(--random-rotation) * 1deg)); /* Xoay lộn xộn */
+    overflow: hidden;
+    /* Loại bỏ 'display: flex' và 'justify-content' ở đây vì chúng ta dùng animation */
 }
 
-.grid-item:hover {
-    transform: scale(1.1) rotate(calc(var(--random-rotation) * 1deg)); /* Phóng to và giữ độ xoay */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    z-index: 10; /* Đưa ảnh lên trên khi hover */
-}
-
+/* Kích thước ảnh thực tế bên trong */
 .grid-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Đảm bảo ảnh lấp đầy khung */
+    object-fit: cover;
     display: block;
+}
+
+/* Khi hover, ảnh phóng to và nổi lên */
+.grid-item:hover {
+    transform: translate(-50%, -50%) scale(1.1) rotate(calc(var(--random-rotation) * 1deg));
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+/* Keyframes cho hiệu ứng nhảy ra */
+@keyframes photoPopOut {
+    0% {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    }
+    50% { /* Đẩy ảnh ra một chút trước khi về vị trí cuối cùng */
+        opacity: 0.7;
+        width: 150px; /* Tạm thời to hơn rồi nhỏ lại */
+        height: 100px;
+        transform: translate(calc(var(--end-x) - 50%), calc(var(--end-y) - 50%)) scale(1.2) rotate(calc(var(--random-rotation) * 1deg));
+    }
+    100% {
+        opacity: 1;
+        width: var(--final-width);   /* Kích thước cuối cùng */
+        height: var(--final-height); /* Kích thước cuối cùng */
+        transform: translate(calc(var(--end-x) - 50%), calc(var(--end-y) - 50%)) scale(1) rotate(calc(var(--random-rotation) * 1deg));
+    }
+}
+
+/* Class sẽ được thêm vào từng ảnh khi chúng xuất hiện */
+.grid-item.animate-pop-out {
+    animation: photoPopOut var(--animation-duration) ease-out forwards;
+    animation-delay: var(--animation-delay); /* Trễ cho từng ảnh */
+}
+
+/* Điều chỉnh lại photo-grid để nó là khung chứa các ảnh absolute */
+.photo-grid {
+    position: relative; /* Quan trọng: Đặt position cho photo-grid */
+    min-height: 500px; /* Chiều cao tối thiểu để chứa ảnh */
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Popup xem ảnh Full màn hình */
@@ -178,4 +203,5 @@ nav a.active-nav { background: white; color: #1877F2; }
     .photo-grid { gap: 15px; padding: 10px; }
     .grid-item { width: 150px; height: 100px; }
     .modal-content { width: 95%; }
+
 }
