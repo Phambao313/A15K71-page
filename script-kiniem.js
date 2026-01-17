@@ -83,18 +83,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
 
-    function setupImageZoom() {
-        // Gắn sự kiện click cho từng ảnh trong grid (chỉ sau khi chúng đã được tạo ra)
-        document.querySelectorAll('.grid-item img').forEach(img => {
-            img.addEventListener('click', () => {
-                modalImage.src = img.src;
-                imageModal.style.display = "flex";
-            });
+    function doGet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  var result = [];
+  
+  for (var i = 1; i < data.length; i++) {
+    var rawUrl = data[i][1]; // Link ở cột B
+    var status = data[i][2]; // Trạng thái ở cột C
+    
+    if (status.toLowerCase() == "duyệt" && rawUrl != "") {
+      var directLink = "";
+      
+      // Kiểm tra nếu là link Google Drive
+      if (rawUrl.includes("drive.google.com")) {
+        var fileId = "";
+        // Trích xuất ID của file từ link Drive
+        if (rawUrl.includes("id=")) {
+          fileId = rawUrl.split("id=")[1].split("&")[0];
+        } else if (rawUrl.includes("/d/")) {
+          fileId = rawUrl.split("/d/")[1].split("/")[0];
+        }
+        
+        // Chuyển thành link xem trực tiếp (Direct Link)
+        if (fileId != "") {
+          directLink = "https://lh3.googleusercontent.com/d/" + fileId;
+        }
+      } else {
+        // Nếu đã là link ảnh trực tiếp từ nơi khác (imgur, v.v.) thì giữ nguyên
+        directLink = rawUrl;
+      }
+
+      if (directLink != "") {
+        result.push({
+          imageUrl: directLink,
+          name: "Kỷ niệm A15"
         });
+      }
     }
+  }
+  
+  return ContentService.createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
 
     closeButton.addEventListener('click', () => imageModal.style.display = "none");
     window.addEventListener('click', (e) => {
         if (e.target === imageModal) imageModal.style.display = "none";
     });
 });
+
