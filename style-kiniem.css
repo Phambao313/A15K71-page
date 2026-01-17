@@ -103,6 +103,66 @@ nav a.active-nav { background: white; color: #1877F2; }
 }
 
 }
+/* Container cho nút ngọc */
+.gem-button-container {
+    display: flex; /* Dùng flexbox để căn chỉnh ngọc và chữ */
+    flex-direction: column; /* Xếp ngọc trên, chữ dưới */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    position: fixed; /* Giữ nút cố định trên màn hình */
+    bottom: 30px; /* Cách đáy màn hình 30px */
+    right: 30px; /* Cách lề phải 30px */
+    z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
+    text-decoration: none; /* Bỏ gạch chân link */
+    color: #fff; /* Màu chữ trắng */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Tạo bóng cho chữ */
+    transition: transform 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.gem-button-container:hover {
+    transform: translateY(-5px) scale(1.05); /* Nảy lên một chút khi di chuột qua */
+}
+
+/* Biểu tượng viên ngọc */
+.gem-icon {
+    width: 80px; /* Kích thước viên ngọc */
+    height: 80px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7)); /* Hiệu ứng tỏa sáng vàng */
+    animation: gemGlow 2s infinite alternate; /* Hiệu ứng lấp lánh */
+}
+
+/* Chữ bên dưới viên ngọc */
+.gem-text {
+    margin-top: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Hiệu ứng lấp lánh cho viên ngọc */
+@keyframes gemGlow {
+    0% {
+        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+    }
+    100% {
+        filter: drop_shadow(0 0 15px rgba(255, 215, 0, 1));
+    }
+}
+
+/* Điều chỉnh trên thiết bị di động */
+@media (max-width: 768px) {
+    .gem-button-container {
+        bottom: 15px;
+        right: 15px;
+    }
+    .gem-icon {
+        width: 60px;
+        height: 60px;
+    }
+    .gem-text {
+        font-size: 0.8em;
+    }
+}
 
 
 
