@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // return data.map(item => item.imageUrl);
 
         return [
-            "https://i.imgur.com/example1.jpg", // Thay bằng link ảnh thật của bạn
+            "", // Thay bằng link ảnh thật của bạn
             "https://i.imgur.com/example2.jpg",
             "https://i.imgur.com/example3.jpg",
             "https://i.imgur.com/example4.jpg",
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sparkles.style.opacity = 0;
 
             // 2. Thay ảnh rương đóng thành rương mở
-            treasureChest.src = 'chest-open.png'; // Bạn cần ảnh rương mở
+            treasureChest.src = 'ảnh rương mở.png'; // Bạn cần ảnh rương mở
             treasureChest.alt = 'Rương kho báu mở';
 
             // 3. Tải ảnh và hiển thị
@@ -92,4 +92,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hoặc tải ảnh mẫu sau:
     // chest-closed.png: https://i.imgur.com/4X1YgqV.png
     // chest-open.png:   https://i.imgur.com/tX5N0tD.png
+
 });
