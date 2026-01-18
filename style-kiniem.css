@@ -60,16 +60,47 @@ nav a.active-nav { background: white; color: #1877F2; }
     75% { transform: rotate(5deg); }
 }
 
-/* Vùng chứa ảnh nhảy ra */
+/* Khung chứa tổng quát */
 .photo-grid {
-    position: relative;
-    width: 95%;
-    max-width: 1200px;
-    min-height: auto;
-    margin: 20px auto;
-    overflow: visible; /* Chặn ảnh tràn ra ngoài */
+    display: flex !important;
+    flex-wrap: wrap !important; /* Tự động xuống dòng khi nhiều ảnh */
+    justify-content: center !important; /* Căn giữa các ảnh */
+    gap: 20px !important; /* Khoảng cách giữa các ảnh */
+    padding: 30px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 50px auto 0 auto !important; /* Đẩy khung ảnh xuống dưới rương */
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 1 !important; /* Nằm dưới rương nếu cần, nhưng không bị che */
 }
 
+/* Từng khung ảnh nhỏ */
+.photo-item {
+    width: 250px !important; /* Độ rộng cố định cho mỗi ảnh */
+    background: white !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    transition: transform 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* Hiệu ứng khi di chuột vào ảnh */
+.photo-item:hover {
+    transform: scale(1.05) translateY(-5px) !important;
+    z-index: 100 !important;
+}
+
+/* Hình ảnh bên trong */
+.photo-item img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important; /* Không bị méo ảnh */
+    border-radius: 5px !important;
+}
 .grid-item {
     position: absolute;
     left: 50%; top: 30%; /* Điểm xuất phát từ rương */
@@ -162,6 +193,7 @@ nav a.active-nav { background: white; color: #1877F2; }
         font-size: 0.8em;
     }
 }
+
 
 
 
