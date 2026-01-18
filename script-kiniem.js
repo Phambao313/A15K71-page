@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let directUrl = item.imageUrl;
                 // Chuyển đổi link Drive sang dạng xem trực tiếp
                 if (directUrl && directUrl.includes('drive.google.com')) {
-                    const fileId = directUrl.match(/[-\w]{25,}/);
-                    if (fileId) directUrl = `https://drive.google.com/uc?export=view&id=${fileId[0]}`;
+                    // Đoạn này giúp biến link Drive thành link ảnh trực tiếp
+const fileId = directUrl.match(/[-\w]{25,}/); 
+if (fileId) {
+    directUrl = `https://drive.google.com/uc?export=view&id=${fileId[0]}`;
                 }
                 return { imageUrl: directUrl, name: item.name || "A15" };
             });
@@ -73,3 +75,4 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Không tìm thấy rương! Hãy kiểm tra ID 'treasureChestContainer' trong HTML.");
     }
 });
+
