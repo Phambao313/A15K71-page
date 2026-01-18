@@ -1,4 +1,11 @@
-let isDataLoaded = false; // Thêm biến này ở đầu file
+document.addEventListener('DOMContentLoaded', () => {
+    const chestContainer = document.getElementById('treasureChestContainer');
+    const chestImg = document.getElementById('treasureChest');
+    const photoGrid = document.getElementById('photoGrid');
+    
+    // LINK QUAN TRỌNG: Bạn hãy thay mã này bằng mã lấy từ nút Deploy của bạn
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxzOSQWLqhihM96AMoz45q8lyOByyLxjc8d42DsxK_G0U2GCedknSg2a9IdgYWKgz-FbA/exec'; 
+    let isDataLoaded = false; // Thêm biến này ở đầu file
 
 chestContainer.onclick = async () => {
     if (isChestOpen) return;
@@ -15,31 +22,7 @@ chestContainer.onclick = async () => {
             await loadMemories();
             isDataLoaded = true;
         }
-    }, 600);
-};
-document.addEventListener('DOMContentLoaded', () => {
-    const chestContainer = document.getElementById('treasureChestContainer');
-    const chestImg = document.getElementById('treasureChest');
-    const photoGrid = document.getElementById('photoGrid');
-    
-    // LINK QUAN TRỌNG: Bạn hãy thay mã này bằng mã lấy từ nút Deploy của bạn
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxzOSQWLqhihM96AMoz45q8lyOByyLxjc8d42DsxK_G0U2GCedknSg2a9IdgYWKgz-FbA/exec'; 
-    let isChestOpen = false;
-
-    chestContainer.onclick = async () => {
-        if (isChestOpen) return;
-        
-        // 1. Hiệu ứng rương rung và mở (Luôn chạy bất kể mạng chậm)
-        chestImg.classList.add('shake');
-        
-        setTimeout(() => {
-            chestImg.classList.remove('shake');
-            chestImg.src = 'ảnh rương mở.png'; // Đảm bảo file này đúng tên trên GitHub
-            isChestOpen = true;
-            
-            // 2. Sau khi rương mở, bắt đầu load ảnh
-            loadMemories();
-        }, 600);
+    }, 600);};
     };
 
     async function loadMemories() {
@@ -78,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
 
