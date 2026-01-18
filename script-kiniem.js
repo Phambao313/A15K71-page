@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const photoGrid = document.getElementById('photoGrid');
     
     // LINK QUAN TRỌNG: Bạn hãy thay mã này bằng mã lấy từ nút Deploy của bạn
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzT5BgLMXGsfZBDxZ2-AsdsqPz98kY7rVerz1QoOPdgLmiG8c0_y8ApmOOtX2cbaUdrlg/exec'; 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxzOSQWLqhihM96AMoz45q8lyOByyLxjc8d42DsxK_G0U2GCedknSg2a9IdgYWKgz-FbA/exec'; 
     let isChestOpen = false;
 
     chestContainer.onclick = async () => {
@@ -59,4 +59,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
