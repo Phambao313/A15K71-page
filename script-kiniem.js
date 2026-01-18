@@ -23,6 +23,7 @@ chestContainer.onclick = async () => {
             isDataLoaded = true;
         }
     }, 600);
+};
     };
 
     async function loadMemories() {
@@ -61,6 +62,7 @@ chestContainer.onclick = async () => {
         }
     }
 });
+
 
 
 
