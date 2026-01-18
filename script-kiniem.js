@@ -57,23 +57,24 @@ async function fetchApprovedImages() {
             const gridW = photoGrid.offsetWidth;
             const gridH = photoGrid.offsetHeight;
 
-            images.forEach((imgData, index) => {
-                const item = document.createElement('div');
-                item.className = 'grid-item';
-                
-                // Tính toán vị trí an toàn trong khung
-                const x = Math.random() * (gridW - 220) + 110;
-                const y = Math.random() * (gridH - 170) + 85;
-                const rot = Math.random() * 40 - 20;
-
-                item.style.setProperty('--end-x', `${x}px`);
-                item.style.setProperty('--end-y', `${y}px`);
-                item.style.setProperty('--random-rotation', `${rot}deg`);
-                item.style.setProperty('--animation-delay', `${index * 0.1}s`);
-
-                item.innerHTML = `<img src="${imgData.imageUrl}" alt="A15">`;
-                photoGrid.appendChild(item);
-
+           // Thay thế đoạn inside images.forEach((imgData, index) => { ... })
+images.forEach((imgData, index) => {
+    const item = document.createElement('div');
+    item.className = 'photo-item'; // Sử dụng class photo-item đã định nghĩa trong CSS
+    
+    item.innerHTML = `
+        <img src="${imgData.imageUrl}" alt="A15">
+        <p style="text-align:center; margin-top:5px;">${imgData.name}</p>
+    `;
+    
+    photoGrid.appendChild(item);
+    
+    // Thêm hiệu ứng xuất hiện dần dần
+    setTimeout(() => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+    }, index * 100);
+});
                 // Kích hoạt nhảy sau 50ms
                 setTimeout(() => item.classList.add('animate-pop-out'), 50);
 
@@ -98,6 +99,7 @@ async function fetchApprovedImages() {
         document.getElementById('imageModal').style.display = "none";
     });
 });
+
 
 
 
