@@ -10,21 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
 chestContainer.onclick = async () => {
     if (isChestOpen) return;
     isChestOpen = true;
-    
+
     chestImg.classList.add('shake');
-    
+
     setTimeout(async () => {
         chestImg.classList.remove('shake');
-        chestImg.src = 'ảnh rương mở.png'; 
+        chestImg.src = 'ảnh rương mở.png'; // Đảm bảo tên file này chính xác
 
-        // CHỈ TẢI ẢNH NẾU CHƯA TẢI
         if (!isDataLoaded) {
             await loadMemories();
             isDataLoaded = true;
         }
-    }, 600);
-};
-
+    }, 600); // Đóng setTimeout chuẩn
+}; // Đóng onclick chuẩn
     async function loadMemories() {
         photoGrid.innerHTML = '<p style="text-align:center; width:100%;">Đang tìm kho báu...</p>';
         
@@ -61,6 +59,7 @@ chestContainer.onclick = async () => {
         }
     }
 });
+
 
 
 
