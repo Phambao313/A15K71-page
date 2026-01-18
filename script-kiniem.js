@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const chestImg = document.getElementById('treasureChest');
     const photoGrid = document.getElementById('photoGrid');
     
-    // Đảm bảo đây là link Deploy mới nhất từ Apps Script của bạn
+    // Đảm bảo link scriptURL này là link /exec mới nhất của bạn
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxzOSQWLqhihM96AMoz45q8lyOByyLxjc8d42DsxK_G0U2GCedknSg2a9IdgYWKgz-FbA/exec'; 
+    
+    // KHAI BÁO BIẾN - KHÔNG ĐƯỢC XÓA 2 DÒNG NÀY
     let isChestOpen = false;
     let isDataLoaded = false;
 
@@ -18,21 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(async () => {
                 chestImg.classList.remove('shake');
-                // Kiểm tra tên file này trên GitHub của bạn cho chính xác
+                // Sửa đúng tên file ảnh rương mở trên GitHub của bạn
                 chestImg.src = 'ảnh rương mở.png'; 
 
                 if (!isDataLoaded) {
                     await loadMemories();
                     isDataLoaded = true;
                 }
-            }, 600); // Đóng setTimeout chuẩn xác
-        }; // Đóng onclick chuẩn xác
+            }, 600);
+        };
     }
 
     async function loadMemories() {
         if (photoGrid) photoGrid.innerHTML = '<p style="text-align:center; width:100%;">Đang tìm kho báu...</p>';
         try {
             const response = await fetch(scriptURL);
+            if (!response.ok) throw new Error('Kết nối thất bại');
             const data = await response.json();
 
             if (data && data.length > 0) {
@@ -41,21 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     const div = document.createElement('div');
                     div.className = 'photo-item';
                     
-                    // Code này đã tích hợp sẵn việc hiển thị ảnh từ link Drive đã chuyển đổi
                     div.innerHTML = `
-                        <img src="${item.imageUrl}" alt="Kỷ niệm" onerror="this.src='https://via.placeholder.com/150?text=Lỗi+Link+Ảnh'">
+                        <img src="${item.imageUrl}" alt="Kỷ niệm" onerror="this.src='https://via.placeholder.com/150?text=Lỗi+Ảnh'">
                         <p style="text-align:center; margin-top:10px; font-weight:bold;">${item.name || 'A15'}</p>
                     `;
                     photoGrid.appendChild(div);
                     
-                    // Hiệu ứng hiện dần đẹp mắt
+                    // Hiệu ứng hiện dần
                     setTimeout(() => { div.style.opacity = '1'; }, index * 100);
                 });
             } else {
                 photoGrid.innerHTML = '<p>Chưa có ảnh nào được duyệt!</p>';
             }
         } catch (e) {
-            console.error("Lỗi lấy dữ liệu:", e);
+            console.error("Lỗi:", e);
             photoGrid.innerHTML = '<p>Lỗi kết nối dữ liệu. Hãy kiểm tra lại link Script!</p>';
         }
     }
