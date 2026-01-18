@@ -65,9 +65,9 @@ nav a.active-nav { background: white; color: #1877F2; }
     position: relative;
     width: 95%;
     max-width: 1200px;
-    min-height: 700px;
+    min-height: auto;
     margin: 20px auto;
-    overflow: hidden; /* Chặn ảnh tràn ra ngoài */
+    overflow: visible; /* Chặn ảnh tràn ra ngoài */
 }
 
 .grid-item {
@@ -162,6 +162,7 @@ nav a.active-nav { background: white; color: #1877F2; }
         font-size: 0.8em;
     }
 }
+
 
 
 
