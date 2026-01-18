@@ -1,3 +1,22 @@
+let isDataLoaded = false; // Thêm biến này ở đầu file
+
+chestContainer.onclick = async () => {
+    if (isChestOpen) return;
+    isChestOpen = true;
+    
+    chestImg.classList.add('shake');
+    
+    setTimeout(async () => {
+        chestImg.classList.remove('shake');
+        chestImg.src = 'ảnh rương mở.png'; 
+
+        // CHỈ TẢI ẢNH NẾU CHƯA TẢI
+        if (!isDataLoaded) {
+            await loadMemories();
+            isDataLoaded = true;
+        }
+    }, 600);
+};
 document.addEventListener('DOMContentLoaded', () => {
     const chestContainer = document.getElementById('treasureChestContainer');
     const chestImg = document.getElementById('treasureChest');
@@ -59,5 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
 
 
