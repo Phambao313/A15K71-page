@@ -6,36 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
     let isChestOpen = false;
 
     // 1. Hàm lấy và xử lý dữ liệu Drive
-   async function fetchApprovedImages() {
+async function fetchApprovedImages() {
     try {
         const response = await fetch(scriptURL);
         const data = await response.json();
         
+        // Chuyển đổi dữ liệu và xử lý link Drive cùng lúc
         return data.map(item => {
-            let rawUrl = item.imageUrl; // Lấy link từ cột B của bạn
-            let directUrl = rawUrl;
-
-            // Xử lý link Google Drive dựa trên hình ảnh image_d43b51.png
-            if (rawUrl.includes('drive.google.com')) {
+            let directUrl = item.imageUrl;
+            
+            if (directUrl && directUrl.includes('drive.google.com')) {
                 let fileId = "";
-                if (rawUrl.includes('id=')) {
-                    fileId = rawUrl.split('id=')[1].split('&')[0];
-                } else if (rawUrl.includes('/d/')) {
-                    fileId = rawUrl.split('/d/')[1].split('/')[0];
+                if (directUrl.includes('id=')) {
+                    fileId = directUrl.split('id=')[1].split('&')[0];
+                } else if (directUrl.includes('/d/')) {
+                    fileId = directUrl.split('/d/')[1].split('/')[0];
                 }
                 
                 if (fileId) {
-                    // Chuyển sang link Direct để trình duyệt đọc được
-                    // Đoạn này cực kỳ quan trọng để ảnh hiện lên web
-                var directUrl = rawUrl.replace('open?id=', 'uc?export=view&id=');
+                    directUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
                 }
             }
-            
-// Sửa lại đoạn return bên trong hàm .map() hoặc vòng lặp của bạn
-return {
-    imageUrl: directUrl, // Đảm bảo dùng biến directUrl đã được chuyển đổi
-    name: item.name || "Kỷ niệm"
-};
+
+            return {
+                imageUrl: directUrl,
+                name: item.name || "Kỷ niệm"
             };
         });
     } catch (e) {
@@ -103,6 +98,7 @@ return {
         document.getElementById('imageModal').style.display = "none";
     });
 });
+
 
 
 
