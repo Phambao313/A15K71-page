@@ -26,13 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (fileId) {
                     // Chuyển sang link Direct để trình duyệt đọc được
-                    directUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                    // Đoạn này cực kỳ quan trọng để ảnh hiện lên web
+                var directUrl = rawUrl.replace('open?id=', 'uc?export=view&id=');
                 }
             }
             
-            return {
-                imageUrl: directUrl,
-                name: item.name || "Kỷ niệm"
+// Sửa lại đoạn return bên trong hàm .map() hoặc vòng lặp của bạn
+return {
+    imageUrl: directUrl, // Đảm bảo dùng biến directUrl đã được chuyển đổi
+    name: item.name || "Kỷ niệm"
+};
             };
         });
     } catch (e) {
@@ -100,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('imageModal').style.display = "none";
     });
 });
+
 
 
 
