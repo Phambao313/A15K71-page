@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chestContainer = document.getElementById('treasureChestContainer');
     const chestImg = document.getElementById('treasureChest');
     const photoGrid = document.getElementById('photoGrid');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwKSqMf1-lG7LiwVTSKGJb7pokxoVB_c1KJmchGnbEIs7rb9OZA-EVuPmjdAy-SCg5aEg/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzT5BgLMXGsfZBDxZ2-AsdsqPz98kY7rVerz1QoOPdgLmiG8c0_y8ApmOOtX2cbaUdrlg/exec';
     let isChestOpen = false;
 
     // 1. Hàm lấy và xử lý dữ liệu Drive
@@ -100,5 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('imageModal').style.display = "none";
     });
 });
+
 
 
