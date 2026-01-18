@@ -24,7 +24,6 @@ chestContainer.onclick = async () => {
         }
     }, 600);
 };
-    };
 
     async function loadMemories() {
         photoGrid.innerHTML = '<p style="text-align:center; width:100%;">Đang tìm kho báu...</p>';
@@ -62,6 +61,7 @@ chestContainer.onclick = async () => {
         }
     }
 });
+
 
 
 
