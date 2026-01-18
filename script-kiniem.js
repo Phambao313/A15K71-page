@@ -57,23 +57,28 @@ async function fetchApprovedImages() {
             const gridW = photoGrid.offsetWidth;
             const gridH = photoGrid.offsetHeight;
 
-           // Thay thế đoạn inside images.forEach((imgData, index) => { ... })
 images.forEach((imgData, index) => {
     const item = document.createElement('div');
-    item.className = 'photo-item'; // Sử dụng class photo-item đã định nghĩa trong CSS
+    // PHẢI dùng photo-item để khớp với file CSS của bạn
+    item.className = 'photo-item'; 
     
     item.innerHTML = `
         <img src="${imgData.imageUrl}" alt="A15">
-        <p style="text-align:center; margin-top:5px;">${imgData.name}</p>
+        <p style="text-align:center; margin-top:8px; color:#333; font-weight:bold;">
+            ${imgData.name || 'Kỷ niệm'}
+        </p>
     `;
     
     photoGrid.appendChild(item);
-    
-    // Thêm hiệu ứng xuất hiện dần dần
+
+    // Hiệu ứng hiện dần nhẹ nhàng
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
     setTimeout(() => {
         item.style.opacity = '1';
         item.style.transform = 'translateY(0)';
-    }, index * 100);
+        item.style.transition = 'all 0.5s ease-out';
+    }, index * 150);
 });
                 // Kích hoạt nhảy sau 50ms
                 setTimeout(() => item.classList.add('animate-pop-out'), 50);
@@ -99,6 +104,7 @@ images.forEach((imgData, index) => {
         document.getElementById('imageModal').style.display = "none";
     });
 });
+
 
 
 
