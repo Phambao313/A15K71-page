@@ -1,113 +1,71 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Khai báo các thành phần giao diện
     const chestContainer = document.getElementById('treasureChestContainer');
     const chestImg = document.getElementById('treasureChest');
     const photoGrid = document.getElementById('photoGrid');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzT5BgLMXGsfZBDxZ2-AsdsqPz98kY7rVerz1QoOPdgLmiG8c0_y8ApmOOtX2cbaUdrlg/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbu-c603A_hCq5K6L-3G-H-I1M-lP_X4Z-K6-f2/exec'; 
     let isChestOpen = false;
 
-    // 1. Hàm lấy và xử lý dữ liệu Drive
-async function fetchApprovedImages() {
-    try {
-        const response = await fetch(scriptURL);
-        const data = await response.json();
-        
-        // Chuyển đổi dữ liệu và xử lý link Drive cùng lúc
-        return data.map(item => {
-            let directUrl = item.imageUrl;
+    // 2. Hàm lấy và xử lý dữ liệu Drive (Đảm bảo link uc?export=view)
+    async function fetchApprovedImages() {
+        try {
+            const response = await fetch(scriptURL);
+            const data = await response.json();
             
-            if (directUrl && directUrl.includes('drive.google.com')) {
-                let fileId = "";
-                if (directUrl.includes('id=')) {
-                    fileId = directUrl.split('id=')[1].split('&')[0];
-                } else if (directUrl.includes('/d/')) {
-                    fileId = directUrl.split('/d/')[1].split('/')[0];
+            return data.map(item => {
+                let directUrl = item.imageUrl;
+                // Chuyển đổi link Drive sang dạng hiển thị được trên web
+                if (directUrl && directUrl.includes('drive.google.com')) {
+                    const fileId = directUrl.match(/[-\w]{25,}/);
+                    if (fileId) directUrl = `https://drive.google.com/uc?export=view&id=${fileId[0]}`;
                 }
-                
-                if (fileId) {
-                    directUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
-                }
-            }
-
-            return {
-                imageUrl: directUrl,
-                name: item.name || "Kỷ niệm"
-            };
-        });
-    } catch (e) {
-        console.error("Lỗi lấy dữ liệu:", e);
-        return [];
+                return { imageUrl: directUrl, name: item.name || "A15" };
+            });
+        } catch (e) {
+            console.error("Lỗi kết nối dữ liệu:", e);
+            return [];
+        }
     }
-}
 
-    // 2. Sự kiện click mở rương
+    // 3. Sự kiện Click mở rương
     chestContainer.addEventListener('click', async () => {
         if (isChestOpen) return;
-
+        
+        // Hiệu ứng rung rương
         chestImg.classList.add('shake');
-
+        
         setTimeout(async () => {
-            // Mở rương ngay lập tức
             chestImg.classList.remove('shake');
+            // Thay đổi ảnh rương thành rương đã mở (Kiểm tra đúng tên file nhé)
             chestImg.src = 'ảnh rương mở.png'; 
             isChestOpen = true;
 
+            // Lấy dữ liệu ảnh
             const images = await fetchApprovedImages();
-            if (!images.length) return;
+            
+            if (images && images.length > 0) {
+                photoGrid.innerHTML = ''; // Xóa thông báo chờ
+                
+                images.forEach((imgData, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'photo-item'; // Class này phải khớp với CSS
+                    
+                    item.innerHTML = `
+                        <div class="card-inner">
+                            <img src="${imgData.imageUrl}" alt="Kỷ niệm" onerror="this.src='https://via.placeholder.com/150?text=Lỗi+Ảnh'">
+                            <p>${imgData.name}</p>
+                        </div>
+                    `;
+                    
+                    photoGrid.appendChild(item);
 
-            const gridW = photoGrid.offsetWidth;
-            const gridH = photoGrid.offsetHeight;
-
-images.forEach((imgData, index) => {
-    const item = document.createElement('div');
-    // PHẢI dùng photo-item để khớp với file CSS của bạn
-    item.className = 'photo-item'; 
-    
-    item.innerHTML = `
-        <img src="${imgData.imageUrl}" alt="A15">
-        <p style="text-align:center; margin-top:8px; color:#333; font-weight:bold;">
-            ${imgData.name || 'Kỷ niệm'}
-        </p>
-    `;
-    
-    photoGrid.appendChild(item);
-
-    // Hiệu ứng hiện dần nhẹ nhàng
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    setTimeout(() => {
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-        item.style.transition = 'all 0.5s ease-out';
-    }, index * 150);
-});
-                // Kích hoạt nhảy sau 50ms
-                setTimeout(() => item.classList.add('animate-pop-out'), 50);
-
-                // Gắn sự kiện phóng to ảnh
-                item.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Không cho kích hoạt click rương lần nữa
-                    openModal(imgData.imageUrl);
+                    // Hiệu ứng xuất hiện từng tấm một
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1) rotate(' + (Math.random() * 10 - 5) + 'deg)';
+                    }, index * 200);
                 });
-            });
+            }
         }, 600);
     });
-
-    // 3. Hàm phóng to ảnh (Modal)
-    function openModal(src) {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        modal.style.display = "flex";
-        modalImg.src = src;
-    }
-
-    document.querySelector('.close-button')?.addEventListener('click', () => {
-        document.getElementById('imageModal').style.display = "none";
-    });
 });
-
-
-
-
-
-
-
