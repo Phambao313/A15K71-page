@@ -15,17 +15,14 @@
     <nav class="bg-blue-500 shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex items-center justify-center gap-8 py-4">
-                <a href="#home" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
+                <a href="index.html" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
                     🏠 Trang chủ
                 </a>
-                <a href="#members" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
+                <a href="thanhvienlop.html" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
                     Thành viên lớp
                 </a>
-                <a href="#memories" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
+                <a href="kiniem1.html" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
                     Kỉ niệm
-                </a>
-                <a href="#gallery" class="text-white font-semibold text-lg hover:text-amber-200 transition-colors">
-                    Sách của A15
                 </a>
             </div>
         </div>
@@ -35,8 +32,8 @@
     <header class="bg-white shadow-md sticky top-16 z-40 border-b-4 border-teal-300">
         <div class="max-w-5xl mx-auto px-4 py-6">
             <div class="text-center">
-                <h1 class="text-5xl font-bold text-amber-800">✨ 12Axx Memories ✨</h1>
-                <p class="text-amber-700 mt-3 text-lg">Năm học 2024-2025 • Thanh xuân của chúng ta 🌸</p>
+                <h1 class="text-5xl font-bold text-amber-800">✨ 12A15 Memories ✨</h1>
+                <p class="text-amber-700 mt-3 text-lg">Năm học 2025-2026 • Thanh xuân của chúng ta 🌸</p>
             </div>
         </div>
     </header>
@@ -52,7 +49,7 @@
                 <h2 class="text-3xl font-bold text-amber-800">Chào mừng đến với không gian kỷ niệm!</h2>
             </div>
             <p class="text-amber-700 text-lg leading-relaxed relative z-10">
-                Đây là nơi chúng ta cùng nhau lưu giữ những khoảnh khắc đẹp, những kỷ niệm khó quên của lớp 12Axx. 
+                Đây là nơi chúng ta cùng nhau lưu giữ những khoảnh khắc đẹp, những kỷ niệm khó quên của lớp 12A15. 
                 Hãy chia sẻ những bức ảnh, video, câu chuyện và tạo nên một album kỷ niệm chung đầy ý nghĩa! 💖
             </p>
         </div>
@@ -125,8 +122,8 @@
     <!-- Footer -->
     <footer class="bg-white mt-16 py-10 border-t-4 border-teal-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
-            <p class="text-amber-800 font-bold text-2xl mb-2">✨ 12Axx Memories ✨</p>
-            <p class="text-amber-700 mt-2 text-lg">Website kỷ niệm lớp 12Axx • Năm học 2024-2025</p>
+            <p class="text-amber-800 font-bold text-2xl mb-2">✨ 12A15 Memories ✨</p>
+            <p class="text-amber-700 mt-2 text-lg">Website kỷ niệm lớp 12Axx • Năm học 2025-2026</p>
             <p class="text-amber-600 text-base mt-3">Nơi lưu giữ những khoảnh khắc đẹp nhất của chúng ta 💖🌈</p>
         </div>
     </footer>
@@ -157,7 +154,7 @@
         }
 
         // Mật khẩu lớp - THAY ĐỔI Ở ĐÂY
-        const CLASS_PASSWORD = 'A15memories2024';
+        const CLASS_PASSWORD = '12a15maidinh';
         
         let currentFile = null;
         let currentFileType = null;
@@ -370,70 +367,5 @@
         loadPosts();
     </script>
 
-    <!-- Hướng dẫn cấu hình Firebase -->
-    <div class="max-w-5xl mx-auto px-4 py-8 mb-16">
-        <div class="bg-blue-50 border-4 border-blue-300 rounded-3xl p-8">
-            <h2 class="text-3xl font-bold text-blue-800 mb-6">📚 Hướng dẫn cấu hình Firebase (5 phút)</h2>
-            
-            <div class="space-y-6 text-blue-900">
-                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
-                    <h3 class="font-bold text-xl mb-3">Bước 1: Tạo tài khoản Firebase (Miễn phí)</h3>
-                    <ol class="list-decimal list-inside space-y-2 ml-4">
-                        <li>Truy cập: <a href="https://console.firebase.google.com" target="_blank" class="text-blue-600 underline">https://console.firebase.google.com</a></li>
-                        <li>Đăng nhập bằng Gmail</li>
-                        <li>Nhấn "Add project" (Thêm dự án)</li>
-                        <li>Đặt tên project: "Class12Axx" hoặc tên bạn thích</li>
-                        <li>Bỏ tick "Enable Google Analytics" → Create project</li>
-                    </ol>
-                </div>
-
-                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
-                    <h3 class="font-bold text-xl mb-3">Bước 2: Tạo Web App</h3>
-                    <ol class="list-decimal list-inside space-y-2 ml-4">
-                        <li>Vào project vừa tạo</li>
-                        <li>Nhấn biểu tượng <strong>&lt;/&gt;</strong> (Web)</li>
-                        <li>Đặt tên app: "Class Website"</li>
-                        <li>Nhấn "Register app"</li>
-                        <li>Copy đoạn code <strong>firebaseConfig</strong> hiển thị ra</li>
-                    </ol>
-                </div>
-
-                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
-                    <h3 class="font-bold text-xl mb-3">Bước 3: Bật Realtime Database</h3>
-                    <ol class="list-decimal list-inside space-y-2 ml-4">
-                        <li>Menu bên trái → "Realtime Database"</li>
-                        <li>Nhấn "Create Database"</li>
-                        <li>Chọn location: "Singapore" (gần VN nhất)</li>
-                        <li>Chọn "Start in <strong>test mode</strong>" → Enable</li>
-                    </ol>
-                </div>
-
-                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
-                    <h3 class="font-bold text-xl mb-3">Bước 4: Thay đổi code</h3>
-                    <ol class="list-decimal list-inside space-y-2 ml-4">
-                        <li>Mở file HTML này bằng Notepad/VSCode</li>
-                        <li>Tìm đoạn code <code class="bg-gray-100 px-2 py-1 rounded">const firebaseConfig = {</code></li>
-                        <li>Thay thế <strong>toàn bộ</strong> phần firebaseConfig bằng code bạn copy ở Bước 2</li>
-                        <li>Save file và mở lại trình duyệt</li>
-                    </ol>
-                </div>
-
-                <div class="bg-green-100 rounded-2xl p-6 border-2 border-green-300">
-                    <h3 class="font-bold text-xl mb-3 text-green-800">✅ Xong! Giờ mọi người đều thấy bài viết</h3>
-                    <p class="text-green-700">Gửi link file HTML này cho bạn bè, ai mở cũng thấy cùng 1 website và bài viết chung!</p>
-                </div>
-
-                <div class="bg-yellow-100 rounded-2xl p-6 border-2 border-yellow-300">
-                    <h3 class="font-bold text-xl mb-3 text-yellow-800">💡 Lưu ý quan trọng</h3>
-                    <ul class="list-disc list-inside space-y-2 ml-4 text-yellow-700">
-                        <li><strong>Test mode hết hạn sau 30 ngày</strong> - sau đó cần đổi Firebase Rules</li>
-                        <li><strong>File lớn hơn 5MB</strong> có thể gây lỗi - nên resize ảnh/video trước khi đăng</li>
-                        <li><strong>Firebase miễn phí</strong> giới hạn 1GB storage và 10GB bandwidth/tháng</li>
-                        <li>Để host web lên internet: dùng Firebase Hosting, Netlify, hoặc GitHub Pages (miễn phí)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
