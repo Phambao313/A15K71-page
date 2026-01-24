@@ -57,6 +57,11 @@
             </p>
         </div>
 
+        <!-- Connection Status -->
+        <div id="connectionStatus" class="bg-yellow-100 border-4 border-yellow-300 rounded-2xl p-4 mb-8 text-center">
+            <p class="text-yellow-800 font-bold">⚠️ Đang kết nối đến server...</p>
+        </div>
+
         <!-- Upload Button -->
         <div class="mb-8 text-center">
             <button onclick="toggleUploadForm()" class="bg-teal-300 hover:bg-teal-400 text-amber-900 px-10 py-5 rounded-full font-bold text-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all border-4 border-teal-400">
@@ -77,10 +82,11 @@
             <div class="space-y-6">
                 <div>
                     <label class="block text-amber-800 font-bold mb-3 text-lg">
-                        📷 🎥 Chọn ảnh hoặc video
+                        📷 🎥 Chọn ảnh hoặc video (tối đa 5MB)
                     </label>
                     <input type="file" id="fileInput" accept="image/*,video/*" onchange="previewFile()" 
                         class="w-full px-4 py-4 border-3 border-teal-200 rounded-2xl focus:border-teal-400 focus:outline-none bg-amber-50 text-amber-900 font-medium">
+                    <p class="text-amber-600 text-sm mt-2">💡 File lớn hơn 5MB có thể gây lỗi</p>
                 </div>
 
                 <div id="previewContainer" class="hidden border-4 border-teal-200 rounded-2xl overflow-hidden">
@@ -101,7 +107,7 @@
                     <p class="text-amber-600 text-sm mt-2">⚠️ Chỉ thành viên lớp có mật khẩu mới được đăng bài</p>
                 </div>
 
-                <button onclick="submitPost()" class="w-full bg-teal-300 hover:bg-teal-400 text-amber-900 py-4 rounded-2xl font-bold text-xl shadow-lg hover:shadow-xl transition-all border-3 border-teal-400">
+                <button onclick="submitPost()" id="submitBtn" class="w-full bg-teal-300 hover:bg-teal-400 text-amber-900 py-4 rounded-2xl font-bold text-xl shadow-lg hover:shadow-xl transition-all border-3 border-teal-400">
                     🚀 Đăng bài ngay!
                 </button>
             </div>
@@ -111,7 +117,7 @@
         <div id="postsFeed" class="space-y-8">
             <div class="bg-white rounded-3xl shadow-xl p-16 text-center border-4 border-teal-200">
                 <span class="text-8xl">📷</span>
-                <p class="text-amber-700 text-xl font-medium mt-4">Chưa có bài viết nào. Hãy là người đầu tiên chia sẻ kỷ niệm! 🌟</p>
+                <p class="text-amber-700 text-xl font-medium mt-4">Đang tải bài viết...</p>
             </div>
         </div>
     </div>
@@ -125,17 +131,75 @@
         </div>
     </footer>
 
-    <script>
+    <script type="module">
+            const firebaseConfig = {
+      apiKey: "AIzaSyAngaevXBKT3yFFxFlcLysmtW1rW9X3HGs",
+      authDomain: "class12a15-a430c.firebaseapp.com",
+      databaseURL:"https://class12a15-a430c-default-rtdb.asia-southeast1.firebasedatabase.app"          
+      projectId: "class12a15-a430c",
+      storageBucket: "class12a15-a430c.firebasestorage.app",
+      messagingSenderId: "151998818188",
+      appId: "1:151998818188:web:35a03f34296fd4d70f18a9"
+    };
+        
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, push, onValue, update } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        // CẤU HÌNH FIREBASE - THAY ĐỔI Ở ĐÂY
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Khởi tạo Firebase
+        let app, database;
+        try {
+            app = initializeApp(firebaseConfig);
+            database = getDatabase(app);
+            updateConnectionStatus(true);
+        } catch (error) {
+            console.error("Lỗi kết nối Firebase:", error);
+            updateConnectionStatus(false);
+        }
+
         // Mật khẩu lớp - THAY ĐỔI Ở ĐÂY
         const CLASS_PASSWORD = 'A15memories2024';
         
         let currentFile = null;
         let currentFileType = null;
 
-        // Load posts from localStorage
+        function updateConnectionStatus(connected) {
+            const status = document.getElementById('connectionStatus');
+            if (connected) {
+                status.className = 'bg-green-100 border-4 border-green-300 rounded-2xl p-4 mb-8 text-center';
+                status.innerHTML = '<p class="text-green-800 font-bold">✅ Đã kết nối! Mọi người có thể thấy bài viết của bạn</p>';
+            } else {
+                status.className = 'bg-red-100 border-4 border-red-300 rounded-2xl p-4 mb-8 text-center';
+                status.innerHTML = '<p class="text-red-800 font-bold">❌ Chưa cấu hình Firebase. Xem hướng dẫn bên dưới!</p>';
+            }
+        }
+
+        // Load posts from Firebase
         function loadPosts() {
-            const posts = JSON.parse(localStorage.getItem('classPosts') || '[]');
-            displayPosts(posts);
+            if (!database) {
+                displayPosts([]);
+                return;
+            }
+
+            const postsRef = ref(database, 'posts');
+            onValue(postsRef, (snapshot) => {
+                const data = snapshot.val();
+                const posts = data ? Object.keys(data).map(key => ({
+                    ...data[key],
+                    firebaseId: key
+                })).sort((a, b) => b.timestamp - a.timestamp) : [];
+                displayPosts(posts);
+            });
         }
 
         // Display posts
@@ -166,9 +230,9 @@
                         <div class="p-8 bg-gradient-to-b from-white to-amber-50">
                             <p class="text-amber-900 text-lg mb-6 leading-relaxed font-medium">${post.caption}</p>
                             <div class="flex items-center gap-8 text-amber-700 border-t-2 border-teal-200 pt-4">
-                                <button onclick="likePost(${post.id})" class="flex items-center gap-2 hover:text-red-500 transition-colors bg-amber-100 px-4 py-2 rounded-full font-bold hover:bg-red-100">
+                                <button onclick="window.likePost('${post.firebaseId}')" class="flex items-center gap-2 hover:text-red-500 transition-colors bg-amber-100 px-4 py-2 rounded-full font-bold hover:bg-red-100">
                                     <span>${post.likes > 0 ? '❤️' : '🤍'}</span>
-                                    <span>${post.likes} ❤️</span>
+                                    <span>${post.likes || 0} ❤️</span>
                                 </button>
                                 <div class="flex items-center gap-2 bg-amber-100 px-4 py-2 rounded-full font-bold">
                                     <span>💬</span>
@@ -185,7 +249,7 @@
         }
 
         // Toggle upload form
-        function toggleUploadForm() {
+        window.toggleUploadForm = function() {
             const form = document.getElementById('uploadForm');
             form.classList.toggle('hidden');
             if (!form.classList.contains('hidden')) {
@@ -198,11 +262,18 @@
         }
 
         // Preview file
-        function previewFile() {
+        window.previewFile = function() {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
             
             if (!file) return;
+
+            // Kiểm tra kích thước file (5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('⚠️ File quá lớn! Vui lòng chọn file nhỏ hơn 5MB');
+                fileInput.value = '';
+                return;
+            }
 
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -229,9 +300,15 @@
         }
 
         // Submit post
-        function submitPost() {
+        window.submitPost = async function() {
+            if (!database) {
+                alert('❌ Chưa kết nối Firebase! Vui lòng cấu hình Firebase trước.');
+                return;
+            }
+
             const caption = document.getElementById('captionInput').value.trim();
             const password = document.getElementById('passwordInput').value;
+            const submitBtn = document.getElementById('submitBtn');
 
             if (!currentFile || !caption) {
                 alert('Vui lòng chọn ảnh/video và nhập caption!');
@@ -243,33 +320,45 @@
                 return;
             }
 
-            const posts = JSON.parse(localStorage.getItem('classPosts') || '[]');
-            const newPost = {
-                id: Date.now(),
-                media: currentFile,
-                mediaType: currentFileType,
-                caption: caption,
-                timestamp: Date.now(),
-                likes: 0
-            };
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Đang đăng...';
 
-            posts.unshift(newPost);
-            localStorage.setItem('classPosts', JSON.stringify(posts));
+            try {
+                const newPost = {
+                    media: currentFile,
+                    mediaType: currentFileType,
+                    caption: caption,
+                    timestamp: Date.now(),
+                    likes: 0
+                };
 
-            toggleUploadForm();
-            loadPosts();
-            alert('✅ Đã đăng bài thành công!');
+                const postsRef = ref(database, 'posts');
+                await push(postsRef, newPost);
+
+                window.toggleUploadForm();
+                alert('✅ Đã đăng bài thành công!');
+            } catch (error) {
+                console.error('Lỗi khi đăng bài:', error);
+                alert('❌ Có lỗi xảy ra. Vui lòng thử lại!');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 Đăng bài ngay!';
+            }
         }
 
         // Like post
-        function likePost(postId) {
-            const posts = JSON.parse(localStorage.getItem('classPosts') || '[]');
-            const post = posts.find(p => p.id === postId);
-            if (post) {
-                post.likes++;
-                localStorage.setItem('classPosts', JSON.stringify(posts));
-                loadPosts();
-            }
+        window.likePost = async function(firebaseId) {
+            if (!database) return;
+            
+            const postRef = ref(database, `posts/${firebaseId}`);
+            const updates = {};
+            
+            // Get current likes and increment
+            const snapshot = await get(postRef);
+            const currentLikes = snapshot.val()?.likes || 0;
+            updates[`posts/${firebaseId}/likes`] = currentLikes + 1;
+            
+            await update(ref(database), updates);
         }
 
         // Format date
@@ -291,5 +380,71 @@
         // Load posts on page load
         loadPosts();
     </script>
+
+    <!-- Hướng dẫn cấu hình Firebase -->
+    <div class="max-w-5xl mx-auto px-4 py-8 mb-16">
+        <div class="bg-blue-50 border-4 border-blue-300 rounded-3xl p-8">
+            <h2 class="text-3xl font-bold text-blue-800 mb-6">📚 Hướng dẫn cấu hình Firebase (5 phút)</h2>
+            
+            <div class="space-y-6 text-blue-900">
+                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
+                    <h3 class="font-bold text-xl mb-3">Bước 1: Tạo tài khoản Firebase (Miễn phí)</h3>
+                    <ol class="list-decimal list-inside space-y-2 ml-4">
+                        <li>Truy cập: <a href="https://console.firebase.google.com" target="_blank" class="text-blue-600 underline">https://console.firebase.google.com</a></li>
+                        <li>Đăng nhập bằng Gmail</li>
+                        <li>Nhấn "Add project" (Thêm dự án)</li>
+                        <li>Đặt tên project: "Class12Axx" hoặc tên bạn thích</li>
+                        <li>Bỏ tick "Enable Google Analytics" → Create project</li>
+                    </ol>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
+                    <h3 class="font-bold text-xl mb-3">Bước 2: Tạo Web App</h3>
+                    <ol class="list-decimal list-inside space-y-2 ml-4">
+                        <li>Vào project vừa tạo</li>
+                        <li>Nhấn biểu tượng <strong>&lt;/&gt;</strong> (Web)</li>
+                        <li>Đặt tên app: "Class Website"</li>
+                        <li>Nhấn "Register app"</li>
+                        <li>Copy đoạn code <strong>firebaseConfig</strong> hiển thị ra</li>
+                    </ol>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
+                    <h3 class="font-bold text-xl mb-3">Bước 3: Bật Realtime Database</h3>
+                    <ol class="list-decimal list-inside space-y-2 ml-4">
+                        <li>Menu bên trái → "Realtime Database"</li>
+                        <li>Nhấn "Create Database"</li>
+                        <li>Chọn location: "Singapore" (gần VN nhất)</li>
+                        <li>Chọn "Start in <strong>test mode</strong>" → Enable</li>
+                    </ol>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border-2 border-blue-200">
+                    <h3 class="font-bold text-xl mb-3">Bước 4: Thay đổi code</h3>
+                    <ol class="list-decimal list-inside space-y-2 ml-4">
+                        <li>Mở file HTML này bằng Notepad/VSCode</li>
+                        <li>Tìm đoạn code <code class="bg-gray-100 px-2 py-1 rounded">const firebaseConfig = {</code></li>
+                        <li>Thay thế <strong>toàn bộ</strong> phần firebaseConfig bằng code bạn copy ở Bước 2</li>
+                        <li>Save file và mở lại trình duyệt</li>
+                    </ol>
+                </div>
+
+                <div class="bg-green-100 rounded-2xl p-6 border-2 border-green-300">
+                    <h3 class="font-bold text-xl mb-3 text-green-800">✅ Xong! Giờ mọi người đều thấy bài viết</h3>
+                    <p class="text-green-700">Gửi link file HTML này cho bạn bè, ai mở cũng thấy cùng 1 website và bài viết chung!</p>
+                </div>
+
+                <div class="bg-yellow-100 rounded-2xl p-6 border-2 border-yellow-300">
+                    <h3 class="font-bold text-xl mb-3 text-yellow-800">💡 Lưu ý quan trọng</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4 text-yellow-700">
+                        <li><strong>Test mode hết hạn sau 30 ngày</strong> - sau đó cần đổi Firebase Rules</li>
+                        <li><strong>File lớn hơn 5MB</strong> có thể gây lỗi - nên resize ảnh/video trước khi đăng</li>
+                        <li><strong>Firebase miễn phí</strong> giới hạn 1GB storage và 10GB bandwidth/tháng</li>
+                        <li>Để host web lên internet: dùng Firebase Hosting, Netlify, hoặc GitHub Pages (miễn phí)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
