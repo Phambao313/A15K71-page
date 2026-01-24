@@ -132,29 +132,18 @@
     </footer>
 
     <script type="module">
-            const firebaseConfig = {
-      apiKey: "AIzaSyAngaevXBKT3yFFxFlcLysmtW1rW9X3HGs",
-      authDomain: "class12a15-a430c.firebaseapp.com",
-      databaseURL:"https://class12a15-a430c-default-rtdb.asia-southeast1.firebasedatabase.app"          
-      projectId: "class12a15-a430c",
-      storageBucket: "class12a15-a430c.firebasestorage.app",
-      messagingSenderId: "151998818188",
-      appId: "1:151998818188:web:35a03f34296fd4d70f18a9"
-    };
+        const firebaseConfig = {
+          apiKey: "AIzaSyAngaevXBKT3yFFxFlcLysmtW1rW9X3HGs",
+          authDomain: "class12a15-a430c.firebaseapp.com",
+          databaseURL:"https://class12a15-a430c-default-rtdb.asia-southeast1.firebasedatabase.app"          
+          projectId: "class12a15-a430c",
+          storageBucket: "class12a15-a430c.firebasestorage.app",
+          messagingSenderId: "151998818188",
+          appId: "1:151998818188:web:35a03f34296fd4d70f18a9"
+        };
         
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getDatabase, ref, push, onValue, update } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
-
-        // CẤU HÌNH FIREBASE - THAY ĐỔI Ở ĐÂY
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY_HERE",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
 
         // Khởi tạo Firebase
         let app, database;
