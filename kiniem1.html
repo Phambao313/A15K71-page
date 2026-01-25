@@ -86,9 +86,9 @@
                     <p class="text-amber-600 text-sm mt-2">💡 File lớn hơn 5MB có thể gây lỗi</p>
                 </div>
 
-                <div id="previewContainer" class="hidden border-4 border-teal-200 rounded-2xl overflow-hidden">
-                    <img id="imagePreview" class="w-full h-96 object-cover hidden">
-                    <video id="videoPreview" controls class="w-full h-96 object-cover hidden"></video>
+                <div id="previewContainer" class="hidden border-4 border-teal-200 rounded-2xl overflow-hidden bg-gray-100">
+                    <img id="imagePreview" class="w-full max-h-96 object-contain mx-auto hidden">
+                    <video id="videoPreview" controls class="w-full max-h-96 object-contain mx-auto hidden"></video>
                 </div>
 
                 <div>
@@ -204,8 +204,8 @@
 
             feed.innerHTML = posts.map(post => {
                 const mediaHTML = post.mediaType === 'video' 
-                    ? `<video src="${post.media}" controls class="w-full h-96 object-cover"></video>`
-                    : `<img src="${post.media}" alt="${post.caption}" class="w-full h-96 object-cover">`;
+                    ? `<video src="${post.media}" controls class="w-full max-h-96 object-contain bg-gray-100"></video>`
+                    : `<img src="${post.media}" alt="${post.caption}" class="w-full max-h-96 object-contain bg-gray-100">`;
 
                 return `
                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all border-4 border-teal-200 transform hover:scale-[1.02] relative">
