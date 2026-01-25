@@ -140,7 +140,7 @@
         };
         
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, push, onValue, update } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+        import { getDatabase, ref, push, onValue, update, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 
         // Khởi tạo Firebase
         let app, database;
@@ -336,15 +336,21 @@
         window.likePost = async function(firebaseId) {
             if (!database) return;
             
-            const postRef = ref(database, `posts/${firebaseId}`);
-            const updates = {};
-            
-            // Get current likes and increment
-            const snapshot = await get(postRef);
-            const currentLikes = snapshot.val()?.likes || 0;
-            updates[`posts/${firebaseId}/likes`] = currentLikes + 1;
-            
-            await update(ref(database), updates);
+            try {
+                const postRef = ref(database, `posts/${firebaseId}`);
+                
+                // Lấy giá trị likes hiện tại
+                const snapshot = await get(postRef);
+                const currentLikes = snapshot.val()?.likes || 0;
+                
+                // Cập nhật likes
+                const updates = {};
+                updates[`posts/${firebaseId}/likes`] = currentLikes + 1;
+                
+                await update(ref(database), updates);
+            } catch (error) {
+                console.error('Lỗi khi like:', error);
+            }
         }
 
         // Format date
