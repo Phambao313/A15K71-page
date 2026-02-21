@@ -1286,16 +1286,24 @@
     </div>
 
     <nav>
-        <span class="nav-logo">12A15</span>
-        <div class="nav-links">
-            <a href="index.html" class="active">🏠 Trang chủ</a>
-            <a href="thanhvienlop.html">Thành viên lớp</a>
-            <a href="kiniem1.html">Kỉ niệm</a>
-        </div>
-        <div class="hamburger" id="ham" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
+    <span class="nav-logo">12A15</span>
+    <div class="nav-links">
+        <a href="index.html" class="active">🏠 Trang chủ</a>
+        <a href="thanhvienlop.html">Thành viên lớp</a>
+        <a href="kiniem1.html">Kỉ niệm</a>
+    </div>
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
     </nav>
+    
+    <div class="overlay-menu" id="overlay-menu">
+        <a href="index.html" class="active" onclick="toggleMenu()">🏠 Trang chủ</a>
+        <div class="overlay-divider"></div>
+        <a href="thanhvienlop.html" onclick="toggleMenu()">Thành viên lớp</a>
+        <div class="overlay-divider"></div>
+        <a href="kiniem1.html" onclick="toggleMenu()">Kỉ niệm</a>
+    </div>
     <div class="mobile-menu" id="mob-menu">
         <a href="index.html" class="active">🏠 Trang chủ</a>
         <a href="thanhvienlop.html">Thành viên lớp</a>
@@ -1513,8 +1521,14 @@
         function enterGuest() { showWelcome('Chào mừng <span>"đằng ấy"</span> đến với hồ sơ của 12A15 😎'); setTimeout(closeGateway, 1700); }
 
         /* HAMBURGER */
-        function toggleMenu() { document.getElementById('ham').classList.toggle('open'); document.getElementById('mob-menu').classList.toggle('open'); }
-
+        function toggleMenu(){
+            document.getElementById('ham').classList.toggle('open');
+            document.getElementById('overlay-menu').classList.toggle('open');
+            document.body.style.overflow = document.getElementById('overlay-menu').classList.contains('open') ? 'hidden' : '';
+        }
+        document.addEventListener('keydown', e=>{
+            if(e.key==='Escape' && document.getElementById('overlay-menu').classList.contains('open')) toggleMenu();
+        });
         /* MUSIC */
         const audio = document.getElementById('bg-music');
         const mBtn = document.getElementById('music-btn');
@@ -1621,4 +1635,5 @@
 </body>
 
 </html>
+
 
